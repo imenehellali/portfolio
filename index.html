@@ -51,22 +51,65 @@
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
-        .logo-placeholder {
+        /* Three bubbles logo for navbar */
+        .logo-bubbles {
+            position: relative;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
-            background-size: 200% 200%;
-            animation: gradientMove 3s ease infinite;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 1.5rem;
+        }
+
+        .nav-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            animation: bubbleFloat 3s ease-in-out infinite;
+        }
+
+        .nav-bubble:nth-child(1) {
+            width: 28px;
+            height: 28px;
+            top: 5px;
+            left: 11px;
+            background: linear-gradient(135deg, var(--turquoise), var(--light-blue));
+            animation-delay: 0s;
+            box-shadow: 0 2px 8px rgba(64, 224, 208, 0.4);
+        }
+
+        .nav-bubble:nth-child(2) {
+            width: 20px;
+            height: 20px;
+            bottom: 2px;
+            left: 2px;
+            background: linear-gradient(135deg, var(--pink), var(--light-purple));
+            animation-delay: 0.3s;
+            box-shadow: 0 2px 8px rgba(255, 182, 217, 0.4);
+        }
+
+        .nav-bubble:nth-child(3) {
+            width: 16px;
+            height: 16px;
+            bottom: 5px;
+            right: 5px;
+            background: linear-gradient(135deg, var(--light-blue), var(--light-purple));
+            animation-delay: 0.6s;
+            box-shadow: 0 2px 8px rgba(168, 216, 234, 0.4);
+        }
+
+        @keyframes bubbleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
         }
 
         .logo-name {
@@ -115,6 +158,10 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero::before {
@@ -134,6 +181,330 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Logo animation container - positioned absolutely in the same space as text */
+        .logo-animation-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            animation: logoFadeOut 8s ease-in-out forwards;
+        }
+
+        .animation-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Hide text initially, show after animation - positioned in same place */
+        .hero-text {
+            opacity: 0;
+            animation: textFadeIn 1s ease-in forwards;
+            animation-delay: 7.5s;
+            text-align: center;
+        }
+
+        /* Neuron at the start */
+        .neuron {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+        }
+
+        .neuron-body {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #40E0D0, #5BC5C1, #A8D8EA);
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            animation: neuronPulse 8s ease-in-out forwards;
+            box-shadow: 0 0 20px rgba(64, 224, 208, 0.4);
+        }
+
+        .neuron-body::before {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+        }
+
+        .dendrite {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.7), rgba(168, 216, 234, 0.7));
+            border-radius: 50%;
+        }
+
+        .dendrite:nth-child(1) { 
+            width: 20px; height: 20px;
+            top: -5px; left: 10px;
+            animation: dendritePulse 8s ease-in-out forwards 0.1s;
+        }
+        .dendrite:nth-child(2) { 
+            width: 18px; height: 18px;
+            top: 0; right: 8px;
+            animation: dendritePulse 8s ease-in-out forwards 0.2s;
+        }
+        .dendrite:nth-child(3) { 
+            width: 16px; height: 16px;
+            top: 20px; left: -8px;
+            animation: dendritePulse 8s ease-in-out forwards 0.3s;
+        }
+        .dendrite:nth-child(4) { 
+            width: 16px; height: 16px;
+            top: 20px; right: -8px;
+            animation: dendritePulse 8s ease-in-out forwards 0.4s;
+        }
+        .dendrite:nth-child(5) { 
+            width: 14px; height: 14px;
+            bottom: 5px; left: 5px;
+            animation: dendritePulse 8s ease-in-out forwards 0.5s;
+        }
+        .dendrite:nth-child(6) { 
+            width: 14px; height: 14px;
+            bottom: 5px; right: 5px;
+            animation: dendritePulse 8s ease-in-out forwards 0.6s;
+        }
+
+        /* Bubbles that flow and create everything */
+        .bubble {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #40E0D0, #FFB6D9);
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 15px rgba(64, 224, 208, 0.6);
+        }
+
+        /* Left side bubbles */
+        .bubble.left-1 { animation: leftToInfinity1 8s ease-in-out forwards; }
+        .bubble.left-2 { animation: leftToInfinity2 8s ease-in-out forwards; animation-delay: 0.2s; }
+        .bubble.left-3 { animation: leftToInfinity3 8s ease-in-out forwards; animation-delay: 0.4s; }
+        .bubble.left-4 { animation: leftToInfinity4 8s ease-in-out forwards; animation-delay: 0.6s; }
+
+        /* Right side bubbles */
+        .bubble.right-1 { animation: rightToInfinity1 8s ease-in-out forwards; }
+        .bubble.right-2 { animation: rightToInfinity2 8s ease-in-out forwards; animation-delay: 0.2s; }
+        .bubble.right-3 { animation: rightToInfinity3 8s ease-in-out forwards; animation-delay: 0.4s; }
+        .bubble.right-4 { animation: rightToInfinity4 8s ease-in-out forwards; animation-delay: 0.6s; }
+
+        /* Infinity loop path */
+        .infinity-path {
+            position: absolute;
+            top: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 140px;
+        }
+
+        .infinity-svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: infinityReveal 8s ease-in-out forwards;
+        }
+
+        /* IH Letter outlines that fill gradually */
+        .letter-outline {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            animation: outlineAppear 8s ease-in-out forwards;
+        }
+
+        .letter {
+            position: relative;
+        }
+
+        /* I letter outline */
+        .letter-i-outline {
+            width: 35px;
+            height: 140px;
+            position: relative;
+        }
+
+        .i-dot-outline {
+            width: 35px;
+            height: 35px;
+            border: 3px solid rgba(64, 224, 208, 0.3);
+            border-radius: 50%;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .i-body-outline {
+            width: 35px;
+            height: 90px;
+            border: 3px solid rgba(64, 224, 208, 0.3);
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* H letter outline */
+        .letter-h-outline {
+            width: 80px;
+            height: 140px;
+            position: relative;
+        }
+
+        .h-left-outline, .h-right-outline {
+            width: 30px;
+            height: 140px;
+            border: 3px solid rgba(255, 182, 217, 0.3);
+            border-radius: 15px;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .h-left-outline { left: 0; }
+        .h-right-outline { right: 0; }
+
+        .h-bridge-outline {
+            width: 74px;
+            height: 24px;
+            border: 3px solid rgba(212, 165, 255, 0.3);
+            border-radius: 12px;
+            position: absolute;
+            top: 58px;
+            left: 3px;
+            overflow: hidden;
+        }
+
+        /* Fill bubbles for letters */
+        .fill-bubble {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #40E0D0, #FFB6D9);
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+        }
+
+        /* I body fill bubbles - 8 bubbles */
+        .i-body-fill-1 { animation: fillIBodyRise1 8s ease-in-out forwards; }
+        .i-body-fill-2 { animation: fillIBodyRise2 8s ease-in-out forwards; }
+        .i-body-fill-3 { animation: fillIBodyRise3 8s ease-in-out forwards; }
+        .i-body-fill-4 { animation: fillIBodyRise4 8s ease-in-out forwards; }
+        .i-body-fill-5 { animation: fillIBodyRise5 8s ease-in-out forwards; }
+        .i-body-fill-6 { animation: fillIBodyRise6 8s ease-in-out forwards; }
+        .i-body-fill-7 { animation: fillIBodyRise7 8s ease-in-out forwards; }
+        .i-body-fill-8 { animation: fillIBodyRise8 8s ease-in-out forwards; }
+
+        /* I dot fill bubbles - 4 bubbles */
+        .i-dot-fill-1 { animation: fillIDotRise1 8s ease-in-out forwards; }
+        .i-dot-fill-2 { animation: fillIDotRise2 8s ease-in-out forwards; }
+        .i-dot-fill-3 { animation: fillIDotRise3 8s ease-in-out forwards; }
+        .i-dot-fill-4 { animation: fillIDotRise4 8s ease-in-out forwards; }
+
+        /* H left bar fill - 6 bubbles */
+        .h-left-fill-1 { animation: fillHLeftRise1 8s ease-in-out forwards; }
+        .h-left-fill-2 { animation: fillHLeftRise2 8s ease-in-out forwards; }
+        .h-left-fill-3 { animation: fillHLeftRise3 8s ease-in-out forwards; }
+        .h-left-fill-4 { animation: fillHLeftRise4 8s ease-in-out forwards; }
+        .h-left-fill-5 { animation: fillHLeftRise5 8s ease-in-out forwards; }
+        .h-left-fill-6 { animation: fillHLeftRise6 8s ease-in-out forwards; }
+
+        /* H right bar fill - 6 bubbles */
+        .h-right-fill-1 { animation: fillHRightRise1 8s ease-in-out forwards; }
+        .h-right-fill-2 { animation: fillHRightRise2 8s ease-in-out forwards; }
+        .h-right-fill-3 { animation: fillHRightRise3 8s ease-in-out forwards; }
+        .h-right-fill-4 { animation: fillHRightRise4 8s ease-in-out forwards; }
+        .h-right-fill-5 { animation: fillHRightRise5 8s ease-in-out forwards; }
+        .h-right-fill-6 { animation: fillHRightRise6 8s ease-in-out forwards; }
+
+        /* H bridge fill - 4 bubbles */
+        .h-bridge-fill-1 { animation: fillHBridgeRise1 8s ease-in-out forwards; }
+        .h-bridge-fill-2 { animation: fillHBridgeRise2 8s ease-in-out forwards; }
+        .h-bridge-fill-3 { animation: fillHBridgeRise3 8s ease-in-out forwards; }
+        .h-bridge-fill-4 { animation: fillHBridgeRise4 8s ease-in-out forwards; }
+
+        /* Final glowing IH letters */
+        .final-letters {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            animation: finalLettersGlow 8s ease-in-out forwards;
+        }
+
+        .final-i {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .final-i-dot {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #40E0D0, #5BC5C1);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(64, 224, 208, 0.6);
+        }
+
+        .final-i-body {
+            width: 35px;
+            height: 90px;
+            background: linear-gradient(135deg, #40E0D0, #A8D8EA);
+            border-radius: 18px;
+            box-shadow: 0 0 30px rgba(64, 224, 208, 0.5);
+        }
+
+        .final-h {
+            position: relative;
+            width: 80px;
+            height: 140px;
+        }
+
+        .final-h-left, .final-h-right {
+            width: 30px;
+            height: 140px;
+            background: linear-gradient(180deg, #FFB6D9, #D4A5FF);
+            border-radius: 15px;
+            position: absolute;
+            box-shadow: 0 0 30px rgba(255, 182, 217, 0.5);
+        }
+
+        .final-h-left { left: 0; }
+        .final-h-right { right: 0; }
+
+        .final-h-bridge {
+            width: 74px;
+            height: 24px;
+            background: linear-gradient(90deg, #D4A5FF, #FFB6D9);
+            border-radius: 12px;
+            position: absolute;
+            top: 58px;
+            left: 3px;
+            box-shadow: 0 0 25px rgba(212, 165, 255, 0.5);
         }
 
         .dream-container {
@@ -183,14 +554,13 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             background-size: 200% 200%;
-            animation: gradientMove 4s ease infinite, fadeInUp 0.8s ease-out;
+            animation: gradientMove 4s ease infinite;
         }
 
         .hero h2 {
             font-size: 2rem;
             margin-bottom: 2rem;
             color: #4a5568;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         .hero p {
@@ -200,58 +570,22 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .section {
             padding: 5rem 2rem;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .section h2 {
-            font-size: 3rem;
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
             text-align: center;
-            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 800;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .about-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s;
-            border: 2px solid transparent;
-        }
-
-        .about-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-            border: 2px solid var(--turquoise);
-        }
-
-        .about-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-        }
-
-        .about-card p {
-            color: #4a5568;
-            line-height: 1.8;
         }
 
         .field-tag {
@@ -275,49 +609,83 @@
             margin: 3rem 0;
         }
 
-        .certificates-section {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2.5rem;
             border-radius: 30px;
-            padding: 3rem;
-            margin: 4rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .certificates-section {
+            margin: 5rem 0;
         }
 
         .certificates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .certificate-card {
             background: white;
-            border-radius: 15px;
             padding: 2rem;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 25px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
-            border-top: 4px solid;
-            border-image: linear-gradient(90deg, var(--turquoise), var(--pink)) 1;
+            text-align: center;
         }
 
         .certificate-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
         .certificate-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .certificate-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #2d3748;
+        }
+
+        .certificate-card p {
+            color: #718096;
+            font-size: 0.95rem;
         }
 
         .contact-section {
             text-align: center;
-            padding: 4rem 2rem;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            margin: 4rem auto;
+            margin-top: 5rem;
+            padding: 3rem;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
         }
 
         .social-links {
@@ -378,6 +746,8 @@
             backdrop-filter: blur(10px);
         }
 
+        /* ============ ANIMATIONS ============ */
+
         @keyframes gradientMove {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -404,11 +774,315 @@
             }
         }
 
+        @keyframes logoFadeOut {
+            0%, 85% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes textFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes neuronPulse {
+            0%, 5% { transform: scale(1); opacity: 1; }
+            7%, 40% { transform: scale(1.05); opacity: 0.8; }
+            42%, 100% { opacity: 0; }
+        }
+
+        @keyframes dendritePulse {
+            0%, 5% { transform: scale(1); opacity: 1; }
+            7%, 40% { transform: scale(0.8); opacity: 0.6; }
+            42%, 100% { opacity: 0; }
+        }
+
+        /* Left side bubble paths */
+        @keyframes leftToInfinity1 {
+            0%, 10% { top: 70px; left: 200px; opacity: 0; }
+            12% { opacity: 1; }
+            20% { top: 120px; left: 90px; }
+            28% { top: 180px; left: 75px; }
+            35% { top: 210px; left: 130px; }
+            42% { top: 210px; left: 200px; opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes leftToInfinity2 {
+            0%, 10% { top: 70px; left: 200px; opacity: 0; }
+            12% { opacity: 1; }
+            22% { top: 130px; left: 95px; }
+            30% { top: 190px; left: 80px; }
+            37% { top: 220px; left: 140px; }
+            44% { top: 220px; left: 200px; opacity: 1; }
+            52%, 100% { opacity: 0; }
+        }
+
+        @keyframes leftToInfinity3 {
+            0%, 10% { top: 70px; left: 200px; opacity: 0; }
+            12% { opacity: 1; }
+            24% { top: 140px; left: 85px; }
+            32% { top: 200px; left: 70px; }
+            39% { top: 230px; left: 150px; }
+            46% { top: 230px; left: 200px; opacity: 1; }
+            54%, 100% { opacity: 0; }
+        }
+
+        @keyframes leftToInfinity4 {
+            0%, 10% { top: 70px; left: 200px; opacity: 0; }
+            12% { opacity: 1; }
+            26% { top: 150px; left: 100px; }
+            34% { top: 210px; left: 85px; }
+            41% { top: 240px; left: 160px; }
+            48% { top: 240px; left: 200px; opacity: 1; }
+            56%, 100% { opacity: 0; }
+        }
+
+        /* Right side bubble paths */
+        @keyframes rightToInfinity1 {
+            0%, 10% { top: 70px; left: 200px; opacity: 0; }
+            12% { opacity: 1; }
+            20% { top: 120px; left: 310px; }
+            28% { top: 180px; left: 325px; }
+            35% { top: 210px; left: 270px; }
+            42% { top: 210px; left: 200px; opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes rightToInfinity2 {
+            0%, 10% { top: 70px; left: 200px; opacity: 0; }
+            12% { opacity: 1; }
+            22% { top: 130px; left: 310px; }
+            30% { top: 190px; left: 325px; }
+            37% { top: 220px; left: 270px; }
+            44% { top: 220px; left: 200px; opacity: 1; }
+            52%, 100% { opacity: 0; }
+        }
+
+        @keyframes rightToInfinity3 {
+            0%, 10% { top: 70px; left: 200px; opacity: 0; }
+            12% { opacity: 1; }
+            24% { top: 140px; left: 315px; }
+            32% { top: 200px; left: 330px; }
+            39% { top: 230px; left: 260px; }
+            46% { top: 230px; left: 200px; opacity: 1; }
+            54%, 100% { opacity: 0; }
+        }
+
+        @keyframes rightToInfinity4 {
+            0%, 10% { top: 70px; left: 200px; opacity: 0; }
+            12% { opacity: 1; }
+            26% { top: 150px; left: 305px; }
+            34% { top: 210px; left: 315px; }
+            41% { top: 240px; left: 250px; }
+            48% { top: 240px; left: 200px; opacity: 1; }
+            56%, 100% { opacity: 0; }
+        }
+
+        @keyframes infinityReveal {
+            0%, 40% { opacity: 0; stroke-dashoffset: 1000; }
+            45%, 60% { opacity: 1; stroke-dashoffset: 0; }
+            65%, 100% { opacity: 0; }
+        }
+
+        @keyframes outlineAppear {
+            0%, 58% { opacity: 0; }
+            62%, 90% { opacity: 1; }
+            95%, 100% { opacity: 0; }
+        }
+
+        /* I body fill animations */
+        @keyframes fillIBodyRise1 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 12px; }
+            50% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 10px; left: 13px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIBodyRise2 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 20px; }
+            51% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 25px; left: 18px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIBodyRise3 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
+            52% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 38px; left: 16px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIBodyRise4 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 8px; }
+            53% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 50px; left: 10px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIBodyRise5 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 18px; }
+            54% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 60px; left: 15px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIBodyRise6 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 22px; }
+            55% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 70px; left: 20px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIBodyRise7 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 10px; }
+            56% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 78px; left: 12px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIBodyRise8 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 16px; }
+            57% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 85px; left: 17px; }
+            95%, 100% { opacity: 0; }
+        }
+
+        /* I dot fill animations */
+        @keyframes fillIDotRise1 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 12px; }
+            58% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 12px; left: 13px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIDotRise2 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 18px; }
+            59% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 18px; left: 16px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIDotRise3 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 8px; }
+            60% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 15px; left: 10px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillIDotRise4 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
+            61% { opacity: 1; }
+            72%, 90% { opacity: 1; bottom: 20px; left: 19px; }
+            95%, 100% { opacity: 0; }
+        }
+
+        /* H left bar fill */
+        @keyframes fillHLeftRise1 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 12px; }
+            62% { opacity: 1; }
+            75%, 90% { opacity: 1; bottom: 15px; left: 14px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHLeftRise2 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 18px; }
+            63% { opacity: 1; }
+            75%, 90% { opacity: 1; bottom: 35px; left: 16px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHLeftRise3 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
+            64% { opacity: 1; }
+            75%, 90% { opacity: 1; bottom: 55px; left: 17px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHLeftRise4 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 10px; }
+            65% { opacity: 1; }
+            75%, 90% { opacity: 1; bottom: 75px; left: 13px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHLeftRise5 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 20px; }
+            66% { opacity: 1; }
+            75%, 90% { opacity: 1; bottom: 95px; left: 18px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHLeftRise6 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 14px; }
+            67% { opacity: 1; }
+            75%, 90% { opacity: 1; bottom: 115px; left: 15px; }
+            95%, 100% { opacity: 0; }
+        }
+
+        /* H right bar fill */
+        @keyframes fillHRightRise1 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 12px; }
+            68% { opacity: 1; }
+            78%, 90% { opacity: 1; bottom: 15px; left: 14px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHRightRise2 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 18px; }
+            69% { opacity: 1; }
+            78%, 90% { opacity: 1; bottom: 35px; left: 16px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHRightRise3 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
+            70% { opacity: 1; }
+            78%, 90% { opacity: 1; bottom: 55px; left: 17px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHRightRise4 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 10px; }
+            71% { opacity: 1; }
+            78%, 90% { opacity: 1; bottom: 75px; left: 13px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHRightRise5 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 20px; }
+            72% { opacity: 1; }
+            78%, 90% { opacity: 1; bottom: 95px; left: 18px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHRightRise6 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 14px; }
+            73% { opacity: 1; }
+            78%, 90% { opacity: 1; bottom: 115px; left: 15px; }
+            95%, 100% { opacity: 0; }
+        }
+
+        /* H bridge fill */
+        @keyframes fillHBridgeRise1 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
+            74% { opacity: 1; }
+            80%, 90% { opacity: 1; bottom: 12px; left: 20px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHBridgeRise2 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 35px; }
+            75% { opacity: 1; }
+            80%, 90% { opacity: 1; bottom: 15px; left: 38px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHBridgeRise3 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 55px; }
+            76% { opacity: 1; }
+            80%, 90% { opacity: 1; bottom: 12px; left: 52px; }
+            95%, 100% { opacity: 0; }
+        }
+        @keyframes fillHBridgeRise4 {
+            0%, 48% { opacity: 0; bottom: -10px; left: 25px; }
+            77% { opacity: 1; }
+            80%, 90% { opacity: 1; bottom: 18px; left: 28px; }
+            95%, 100% { opacity: 0; }
+        }
+
+        @keyframes finalLettersGlow {
+            0%, 80% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            83%, 92% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            96%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .hero h2 { font-size: 1.5rem; }
             nav ul { gap: 1rem; font-size: 0.9rem; }
             .section { padding: 3rem 1rem; }
+            .logo-animation-container {
+                width: 300px;
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -416,7 +1090,11 @@
     <nav>
         <div class="container">
             <div class="logo-section">
-                <div class="logo-placeholder">IH</div>
+                <div class="logo-bubbles">
+                    <div class="nav-bubble"></div>
+                    <div class="nav-bubble"></div>
+                    <div class="nav-bubble"></div>
+                </div>
                 <div class="logo-name">Imène Hellali</div>
             </div>
             <ul>
@@ -431,37 +1109,148 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Welcome to My World</h1>
-            <h2>
-                <span class="dream-container">
-                    Bringing Dreams Into Reality
-                    <div class="dream-bubble"></div>
-                </span>
-            </h2>
-            <p>I love bringing ideas to life in every possible way. A lifetime learner exploring games, psychology, neuroscience, VR, AI, , athletes, prediction, manga, art, and everything in between. <br>Simply: I dream, I create.</p>
+            <!-- Logo Animation that plays on load -->
+            <div class="logo-animation-container">
+                <div class="animation-wrapper">
+                    <!-- Neuron with dendrites -->
+                    <div class="neuron">
+                        <div class="dendrite"></div>
+                        <div class="dendrite"></div>
+                        <div class="dendrite"></div>
+                        <div class="dendrite"></div>
+                        <div class="dendrite"></div>
+                        <div class="dendrite"></div>
+                        <div class="neuron-body"></div>
+                    </div>
+
+                    <!-- Bubbles flowing from neuron -->
+                    <div class="bubble left-1"></div>
+                    <div class="bubble left-2"></div>
+                    <div class="bubble left-3"></div>
+                    <div class="bubble left-4"></div>
+                    <div class="bubble right-1"></div>
+                    <div class="bubble right-2"></div>
+                    <div class="bubble right-3"></div>
+                    <div class="bubble right-4"></div>
+
+                    <!-- Infinity symbol path -->
+                    <div class="infinity-path">
+                        <svg class="infinity-svg" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20,70 Q 70,20 90,70 T 140,70 M 140,70 Q 190,120 210,70 T 260,70" 
+                                  fill="none" 
+                                  stroke="url(#infinityGradient)" 
+                                  stroke-width="3" 
+                                  stroke-linecap="round"
+                                  stroke-dasharray="1000"
+                                  stroke-dashoffset="1000"/>
+                            <defs>
+                                <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#40E0D0;stop-opacity:0.6" />
+                                    <stop offset="50%" style="stop-color:#FFB6D9;stop-opacity:0.6" />
+                                    <stop offset="100%" style="stop-color:#D4A5FF;stop-opacity:0.6" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <!-- Letter outlines -->
+                    <div class="letter-outline">
+                        <!-- Letter I -->
+                        <div class="letter letter-i-outline">
+                            <div class="i-dot-outline">
+                                <div class="fill-bubble i-dot-fill-1"></div>
+                                <div class="fill-bubble i-dot-fill-2"></div>
+                                <div class="fill-bubble i-dot-fill-3"></div>
+                                <div class="fill-bubble i-dot-fill-4"></div>
+                            </div>
+                            <div class="i-body-outline">
+                                <div class="fill-bubble i-body-fill-1"></div>
+                                <div class="fill-bubble i-body-fill-2"></div>
+                                <div class="fill-bubble i-body-fill-3"></div>
+                                <div class="fill-bubble i-body-fill-4"></div>
+                                <div class="fill-bubble i-body-fill-5"></div>
+                                <div class="fill-bubble i-body-fill-6"></div>
+                                <div class="fill-bubble i-body-fill-7"></div>
+                                <div class="fill-bubble i-body-fill-8"></div>
+                            </div>
+                        </div>
+
+                        <!-- Letter H -->
+                        <div class="letter letter-h-outline">
+                            <div class="h-left-outline">
+                                <div class="fill-bubble h-left-fill-1"></div>
+                                <div class="fill-bubble h-left-fill-2"></div>
+                                <div class="fill-bubble h-left-fill-3"></div>
+                                <div class="fill-bubble h-left-fill-4"></div>
+                                <div class="fill-bubble h-left-fill-5"></div>
+                                <div class="fill-bubble h-left-fill-6"></div>
+                            </div>
+                            <div class="h-right-outline">
+                                <div class="fill-bubble h-right-fill-1"></div>
+                                <div class="fill-bubble h-right-fill-2"></div>
+                                <div class="fill-bubble h-right-fill-3"></div>
+                                <div class="fill-bubble h-right-fill-4"></div>
+                                <div class="fill-bubble h-right-fill-5"></div>
+                                <div class="fill-bubble h-right-fill-6"></div>
+                            </div>
+                            <div class="h-bridge-outline">
+                                <div class="fill-bubble h-bridge-fill-1"></div>
+                                <div class="fill-bubble h-bridge-fill-2"></div>
+                                <div class="fill-bubble h-bridge-fill-3"></div>
+                                <div class="fill-bubble h-bridge-fill-4"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Final glowing letters -->
+                    <div class="final-letters">
+                        <div class="final-i">
+                            <div class="final-i-dot"></div>
+                            <div class="final-i-body"></div>
+                        </div>
+                        <div class="final-h">
+                            <div class="final-h-left"></div>
+                            <div class="final-h-right"></div>
+                            <div class="final-h-bridge"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text appears after animation -->
+            <div class="hero-text">
+                <h1>Welcome to My World</h1>
+                <h2>
+                    <span class="dream-container">
+                        Bringing Dreams Into Reality
+                        <div class="dream-bubble"></div>
+                    </span>
+                </h2>
+                <p>I love bringing ideas to life in every possible way. A lifetime learner exploring games, psychology, neuroscience, VR, AI, athletes, prediction, manga, art, and everything in between. <br>Simply: I dream, I create.</p>
+            </div>
         </div>
     </section>
 
     <section class="section">
-        <h2>My Universe </h2>
+        <h2>My Universe</h2>
         
         <div class="fields-container">
-            <span class="field-tag" style="--i: 1"><i class="fa-brands fa-unity"style="color: #3f88c0;"></i> Unity Dev</span>
-            <span class="field-tag" style="--i: 2"><i class="fa-solid fa-mask"style="color: #3f88c0;"></i> VR Dev</span>
-            <span class="field-tag" style="--i: 3"><i class="fa-solid fa-leaf"style="color: #3f88c0;"></i> Psychology</span>
-            <span class="field-tag" style="--i: 4"><i class="fa-solid fa-atom"style="color: #3f88c0;"></i> AI & NLP</span>
-            <span class="field-tag" style="--i: 5"><i class="fa-solid fa-diagram-project"style="color: #3f88c0;"></i> Tech PM</span>
-            <span class="field-tag" style="--i: 6"><i class="fa-solid fa-hand-holding-medical"style="color: #3f88c0;"></i> Addiction Research</span>
-            <span class="field-tag" style="--i: 7"><i class="fa-solid fa-book-open-reader"style="color: #3f88c0;"></i> Influence Research</span>
-            <span class="field-tag" style="--i: 8"><i class="fa-solid fa-person-running" style="color: #3f88c0;"></i> Athletics Neuropschology</span>
+            <span class="field-tag" style="--i: 1"><i class="fa-brands fa-unity" style="color: #3f88c0;"></i> Unity Dev</span>
+            <span class="field-tag" style="--i: 2"><i class="fa-solid fa-mask" style="color: #3f88c0;"></i> VR Dev</span>
+            <span class="field-tag" style="--i: 3"><i class="fa-solid fa-leaf" style="color: #3f88c0;"></i> Psychology</span>
+            <span class="field-tag" style="--i: 4"><i class="fa-solid fa-atom" style="color: #3f88c0;"></i> AI & NLP</span>
+            <span class="field-tag" style="--i: 5"><i class="fa-solid fa-diagram-project" style="color: #3f88c0;"></i> Tech PM</span>
+            <span class="field-tag" style="--i: 6"><i class="fa-solid fa-hand-holding-medical" style="color: #3f88c0;"></i> Addiction Research</span>
+            <span class="field-tag" style="--i: 7"><i class="fa-solid fa-book-open-reader" style="color: #3f88c0;"></i> Influence Research</span>
+            <span class="field-tag" style="--i: 8"><i class="fa-solid fa-person-running" style="color: #3f88c0;"></i> Athletics Neuropsychology</span>
             <span class="field-tag" style="--i: 9"><i class="fa-regular fa-futbol" style="color: #3f88c0;"></i> Athletics Performance</span>
-            <span class="field-tag" style="--i: 10"><i class="fa-solid fa-pen-nib"style="color: #3f88c0;"></i> Mangas & Scenarios</span>
-            <span class="field-tag" style="--i: 11"><i class="fa-solid fa-paintbrush"style="color: #3f88c0;"></i> Digital & Traditional Art</span>
-            <span class="field-tag" style="--i: 12"><i class="fa-solid fa-cube"style="color: #3f88c0;"></i> 3D Modeling & Sculpture</span>
-            <span class="field-tag" style="--i: 13"><i class="fi fi-ss-boxing-glove"style="color: #3f88c0;"></i> Boxing </span>
-            <span class="field-tag" style="--i: 14"><i class="fi fi-ss-shuttlecock"style="color: #3f88c0;"></i> Badminton </span>
-            <span class="field-tag" style="--i: 15"><i class="fi fi-ss-olive" style="color: #3f88c0;"></i> <i class="fi fi-ss-fish" style="color: #3f88c0;"></i> Mediterranean </span>
-            <span class="field-tag" style="--i: 16"> <img src="https://flagcdn.com/tn.svg" alt="Tunisia flag" width="24" height="18" style="vertical-align:-0.125em"></span>
+            <span class="field-tag" style="--i: 10"><i class="fa-solid fa-pen-nib" style="color: #3f88c0;"></i> Mangas & Scenarios</span>
+            <span class="field-tag" style="--i: 11"><i class="fa-solid fa-paintbrush" style="color: #3f88c0;"></i> Digital & Traditional Art</span>
+            <span class="field-tag" style="--i: 12"><i class="fa-solid fa-cube" style="color: #3f88c0;"></i> 3D Modeling & Sculpture</span>
+            <span class="field-tag" style="--i: 13"><i class="fi fi-ss-boxing-glove" style="color: #3f88c0;"></i> Boxing</span>
+            <span class="field-tag" style="--i: 14"><i class="fi fi-ss-shuttlecock" style="color: #3f88c0;"></i> Badminton</span>
+            <span class="field-tag" style="--i: 15"><i class="fi fi-ss-olive" style="color: #3f88c0;"></i> <i class="fi fi-ss-fish" style="color: #3f88c0;"></i> Mediterranean</span>
+            <span class="field-tag" style="--i: 16"><img src="https://flagcdn.com/tn.svg" alt="Tunisia flag" width="24" height="18" style="vertical-align:-0.125em"></span>
         </div>
 
         <div class="about-grid">
@@ -490,7 +1279,7 @@
                     <p>TUM</p>
                 </div>
                 <div class="certificate-card">
-                    <div class="certificate-icon"><img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" width="50" height="50"style="vertical-align: middle;"></div>
+                    <div class="certificate-icon"><img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" width="50" height="50" style="vertical-align: middle;"></div>
                     <h4>Professional Diploma in Neurobiology and Psychology in Team Sports</h4>
                     <p>Barça Innovation Hub</p>
                 </div>
@@ -509,7 +1298,7 @@
                 <a href="https://www.linkedin.com/in/imene-hellali/" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://wa.me/yourphonenumber" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 <a href="mailto:hellali_imene@yahoo.fr" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://discord.com/users/pipiggly#3057" class="social-icon" title="Email"><i class="fa-brands fa-discord"></i></a>
+                <a href="https://discord.com/users/pipiggly#3057" class="social-icon" title="Discord"><i class="fa-brands fa-discord"></i></a>
             </div>
 
             <a href="documents/CV-Imene-Hellali.pdf" class="cv-download"><i class="fas fa-file-pdf"></i> Download My CV</a>
