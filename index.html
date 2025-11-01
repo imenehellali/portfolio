@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -102,10 +103,13 @@
         }
 
         @keyframes bubbleFloat {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px);
                 opacity: 0.8;
             }
+
             50% {
                 transform: translateY(-5px);
                 opacity: 1;
@@ -172,7 +176,7 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(64, 224, 208, 0.1) 0%, transparent 70%),
-                        radial-gradient(circle, rgba(255, 182, 217, 0.1) 0%, transparent 70%);
+                radial-gradient(circle, rgba(255, 182, 217, 0.1) 0%, transparent 70%);
             animation: float 20s ease-in-out infinite;
         }
 
@@ -251,34 +255,51 @@
             border-radius: 50%;
         }
 
-        .dendrite:nth-child(1) { 
-            width: 20px; height: 20px;
-            top: -5px; left: 10px;
+        .dendrite:nth-child(1) {
+            width: 20px;
+            height: 20px;
+            top: -5px;
+            left: 10px;
             animation: dendritePulse 8s ease-in-out forwards 0.1s;
         }
-        .dendrite:nth-child(2) { 
-            width: 18px; height: 18px;
-            top: 0; right: 8px;
+
+        .dendrite:nth-child(2) {
+            width: 18px;
+            height: 18px;
+            top: 0;
+            right: 8px;
             animation: dendritePulse 8s ease-in-out forwards 0.2s;
         }
-        .dendrite:nth-child(3) { 
-            width: 16px; height: 16px;
-            top: 20px; left: -8px;
+
+        .dendrite:nth-child(3) {
+            width: 16px;
+            height: 16px;
+            top: 20px;
+            left: -8px;
             animation: dendritePulse 8s ease-in-out forwards 0.3s;
         }
-        .dendrite:nth-child(4) { 
-            width: 16px; height: 16px;
-            top: 20px; right: -8px;
+
+        .dendrite:nth-child(4) {
+            width: 16px;
+            height: 16px;
+            top: 20px;
+            right: -8px;
             animation: dendritePulse 8s ease-in-out forwards 0.4s;
         }
-        .dendrite:nth-child(5) { 
-            width: 14px; height: 14px;
-            bottom: 5px; left: 5px;
+
+        .dendrite:nth-child(5) {
+            width: 14px;
+            height: 14px;
+            bottom: 5px;
+            left: 5px;
             animation: dendritePulse 8s ease-in-out forwards 0.5s;
         }
-        .dendrite:nth-child(6) { 
-            width: 14px; height: 14px;
-            bottom: 5px; right: 5px;
+
+        .dendrite:nth-child(6) {
+            width: 14px;
+            height: 14px;
+            bottom: 5px;
+            right: 5px;
             animation: dendritePulse 8s ease-in-out forwards 0.6s;
         }
 
@@ -294,16 +315,44 @@
         }
 
         /* Left side bubbles */
-        .bubble.left-1 { animation: leftToInfinity1 8s ease-in-out forwards; }
-        .bubble.left-2 { animation: leftToInfinity2 8s ease-in-out forwards; animation-delay: 0.2s; }
-        .bubble.left-3 { animation: leftToInfinity3 8s ease-in-out forwards; animation-delay: 0.4s; }
-        .bubble.left-4 { animation: leftToInfinity4 8s ease-in-out forwards; animation-delay: 0.6s; }
+        .bubble.left-1 {
+            animation: leftToInfinity1 8s ease-in-out forwards;
+        }
+
+        .bubble.left-2 {
+            animation: leftToInfinity2 8s ease-in-out forwards;
+            animation-delay: 0.2s;
+        }
+
+        .bubble.left-3 {
+            animation: leftToInfinity3 8s ease-in-out forwards;
+            animation-delay: 0.4s;
+        }
+
+        .bubble.left-4 {
+            animation: leftToInfinity4 8s ease-in-out forwards;
+            animation-delay: 0.6s;
+        }
 
         /* Right side bubbles */
-        .bubble.right-1 { animation: rightToInfinity1 8s ease-in-out forwards; }
-        .bubble.right-2 { animation: rightToInfinity2 8s ease-in-out forwards; animation-delay: 0.2s; }
-        .bubble.right-3 { animation: rightToInfinity3 8s ease-in-out forwards; animation-delay: 0.4s; }
-        .bubble.right-4 { animation: rightToInfinity4 8s ease-in-out forwards; animation-delay: 0.6s; }
+        .bubble.right-1 {
+            animation: rightToInfinity1 8s ease-in-out forwards;
+        }
+
+        .bubble.right-2 {
+            animation: rightToInfinity2 8s ease-in-out forwards;
+            animation-delay: 0.2s;
+        }
+
+        .bubble.right-3 {
+            animation: rightToInfinity3 8s ease-in-out forwards;
+            animation-delay: 0.4s;
+        }
+
+        .bubble.right-4 {
+            animation: rightToInfinity4 8s ease-in-out forwards;
+            animation-delay: 0.6s;
+        }
 
         /* Infinity loop path */
         .infinity-path {
@@ -371,7 +420,8 @@
             position: relative;
         }
 
-        .h-left-outline, .h-right-outline {
+        .h-left-outline,
+        .h-right-outline {
             width: 30px;
             height: 140px;
             border: 3px solid rgba(255, 182, 217, 0.3);
@@ -380,8 +430,13 @@
             overflow: hidden;
         }
 
-        .h-left-outline { left: 0; }
-        .h-right-outline { right: 0; }
+        .h-left-outline {
+            left: 0;
+        }
+
+        .h-right-outline {
+            right: 0;
+        }
 
         .h-bridge-outline {
             width: 74px;
@@ -406,42 +461,121 @@
         }
 
         /* I body fill bubbles - 8 bubbles */
-        .i-body-fill-1 { animation: fillIBodyRise1 8s ease-in-out forwards; }
-        .i-body-fill-2 { animation: fillIBodyRise2 8s ease-in-out forwards; }
-        .i-body-fill-3 { animation: fillIBodyRise3 8s ease-in-out forwards; }
-        .i-body-fill-4 { animation: fillIBodyRise4 8s ease-in-out forwards; }
-        .i-body-fill-5 { animation: fillIBodyRise5 8s ease-in-out forwards; }
-        .i-body-fill-6 { animation: fillIBodyRise6 8s ease-in-out forwards; }
-        .i-body-fill-7 { animation: fillIBodyRise7 8s ease-in-out forwards; }
-        .i-body-fill-8 { animation: fillIBodyRise8 8s ease-in-out forwards; }
+        .i-body-fill-1 {
+            animation: fillIBodyRise1 8s ease-in-out forwards;
+        }
+
+        .i-body-fill-2 {
+            animation: fillIBodyRise2 8s ease-in-out forwards;
+        }
+
+        .i-body-fill-3 {
+            animation: fillIBodyRise3 8s ease-in-out forwards;
+        }
+
+        .i-body-fill-4 {
+            animation: fillIBodyRise4 8s ease-in-out forwards;
+        }
+
+        .i-body-fill-5 {
+            animation: fillIBodyRise5 8s ease-in-out forwards;
+        }
+
+        .i-body-fill-6 {
+            animation: fillIBodyRise6 8s ease-in-out forwards;
+        }
+
+        .i-body-fill-7 {
+            animation: fillIBodyRise7 8s ease-in-out forwards;
+        }
+
+        .i-body-fill-8 {
+            animation: fillIBodyRise8 8s ease-in-out forwards;
+        }
 
         /* I dot fill bubbles - 4 bubbles */
-        .i-dot-fill-1 { animation: fillIDotRise1 8s ease-in-out forwards; }
-        .i-dot-fill-2 { animation: fillIDotRise2 8s ease-in-out forwards; }
-        .i-dot-fill-3 { animation: fillIDotRise3 8s ease-in-out forwards; }
-        .i-dot-fill-4 { animation: fillIDotRise4 8s ease-in-out forwards; }
+        .i-dot-fill-1 {
+            animation: fillIDotRise1 8s ease-in-out forwards;
+        }
+
+        .i-dot-fill-2 {
+            animation: fillIDotRise2 8s ease-in-out forwards;
+        }
+
+        .i-dot-fill-3 {
+            animation: fillIDotRise3 8s ease-in-out forwards;
+        }
+
+        .i-dot-fill-4 {
+            animation: fillIDotRise4 8s ease-in-out forwards;
+        }
 
         /* H left bar fill - 6 bubbles */
-        .h-left-fill-1 { animation: fillHLeftRise1 8s ease-in-out forwards; }
-        .h-left-fill-2 { animation: fillHLeftRise2 8s ease-in-out forwards; }
-        .h-left-fill-3 { animation: fillHLeftRise3 8s ease-in-out forwards; }
-        .h-left-fill-4 { animation: fillHLeftRise4 8s ease-in-out forwards; }
-        .h-left-fill-5 { animation: fillHLeftRise5 8s ease-in-out forwards; }
-        .h-left-fill-6 { animation: fillHLeftRise6 8s ease-in-out forwards; }
+        .h-left-fill-1 {
+            animation: fillHLeftRise1 8s ease-in-out forwards;
+        }
+
+        .h-left-fill-2 {
+            animation: fillHLeftRise2 8s ease-in-out forwards;
+        }
+
+        .h-left-fill-3 {
+            animation: fillHLeftRise3 8s ease-in-out forwards;
+        }
+
+        .h-left-fill-4 {
+            animation: fillHLeftRise4 8s ease-in-out forwards;
+        }
+
+        .h-left-fill-5 {
+            animation: fillHLeftRise5 8s ease-in-out forwards;
+        }
+
+        .h-left-fill-6 {
+            animation: fillHLeftRise6 8s ease-in-out forwards;
+        }
 
         /* H right bar fill - 6 bubbles */
-        .h-right-fill-1 { animation: fillHRightRise1 8s ease-in-out forwards; }
-        .h-right-fill-2 { animation: fillHRightRise2 8s ease-in-out forwards; }
-        .h-right-fill-3 { animation: fillHRightRise3 8s ease-in-out forwards; }
-        .h-right-fill-4 { animation: fillHRightRise4 8s ease-in-out forwards; }
-        .h-right-fill-5 { animation: fillHRightRise5 8s ease-in-out forwards; }
-        .h-right-fill-6 { animation: fillHRightRise6 8s ease-in-out forwards; }
+        .h-right-fill-1 {
+            animation: fillHRightRise1 8s ease-in-out forwards;
+        }
+
+        .h-right-fill-2 {
+            animation: fillHRightRise2 8s ease-in-out forwards;
+        }
+
+        .h-right-fill-3 {
+            animation: fillHRightRise3 8s ease-in-out forwards;
+        }
+
+        .h-right-fill-4 {
+            animation: fillHRightRise4 8s ease-in-out forwards;
+        }
+
+        .h-right-fill-5 {
+            animation: fillHRightRise5 8s ease-in-out forwards;
+        }
+
+        .h-right-fill-6 {
+            animation: fillHRightRise6 8s ease-in-out forwards;
+        }
 
         /* H bridge fill - 4 bubbles */
-        .h-bridge-fill-1 { animation: fillHBridgeRise1 8s ease-in-out forwards; }
-        .h-bridge-fill-2 { animation: fillHBridgeRise2 8s ease-in-out forwards; }
-        .h-bridge-fill-3 { animation: fillHBridgeRise3 8s ease-in-out forwards; }
-        .h-bridge-fill-4 { animation: fillHBridgeRise4 8s ease-in-out forwards; }
+        .h-bridge-fill-1 {
+            animation: fillHBridgeRise1 8s ease-in-out forwards;
+        }
+
+        .h-bridge-fill-2 {
+            animation: fillHBridgeRise2 8s ease-in-out forwards;
+        }
+
+        .h-bridge-fill-3 {
+            animation: fillHBridgeRise3 8s ease-in-out forwards;
+        }
+
+        .h-bridge-fill-4 {
+            animation: fillHBridgeRise4 8s ease-in-out forwards;
+        }
 
         /* Final glowing IH letters */
         .final-letters {
@@ -484,7 +618,8 @@
             height: 140px;
         }
 
-        .final-h-left, .final-h-right {
+        .final-h-left,
+        .final-h-right {
             width: 30px;
             height: 140px;
             background: linear-gradient(180deg, #FFB6D9, #D4A5FF);
@@ -493,8 +628,13 @@
             box-shadow: 0 0 30px rgba(255, 182, 217, 0.5);
         }
 
-        .final-h-left { left: 0; }
-        .final-h-right { right: 0; }
+        .final-h-left {
+            left: 0;
+        }
+
+        .final-h-right {
+            right: 0;
+        }
 
         .final-h-bridge {
             width: 74px;
@@ -749,18 +889,37 @@
         /* ============ ANIMATIONS ============ */
 
         @keyframes gradientMove {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         @keyframes gradientSlide {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         @keyframes fadeInUp {
@@ -768,6 +927,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -775,317 +935,1258 @@
         }
 
         @keyframes logoFadeOut {
-            0%, 85% { opacity: 1; }
-            100% { opacity: 0; }
+
+            0%,
+            85% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes textFadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes neuronPulse {
-            0%, 5% { transform: scale(1); opacity: 1; }
-            7%, 40% { transform: scale(1.05); opacity: 0.8; }
-            42%, 100% { opacity: 0; }
+
+            0%,
+            5% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            7%,
+            40% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+
+            42%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes dendritePulse {
-            0%, 5% { transform: scale(1); opacity: 1; }
-            7%, 40% { transform: scale(0.8); opacity: 0.6; }
-            42%, 100% { opacity: 0; }
+
+            0%,
+            5% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            7%,
+            40% {
+                transform: scale(0.8);
+                opacity: 0.6;
+            }
+
+            42%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* Left side bubble paths */
         @keyframes leftToInfinity1 {
-            0%, 10% { top: 70px; left: 200px; opacity: 0; }
-            12% { opacity: 1; }
-            20% { top: 120px; left: 90px; }
-            28% { top: 180px; left: 75px; }
-            35% { top: 210px; left: 130px; }
-            42% { top: 210px; left: 200px; opacity: 1; }
-            50%, 100% { opacity: 0; }
+
+            0%,
+            10% {
+                top: 70px;
+                left: 200px;
+                opacity: 0;
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            20% {
+                top: 120px;
+                left: 90px;
+            }
+
+            28% {
+                top: 180px;
+                left: 75px;
+            }
+
+            35% {
+                top: 210px;
+                left: 130px;
+            }
+
+            42% {
+                top: 210px;
+                left: 200px;
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes leftToInfinity2 {
-            0%, 10% { top: 70px; left: 200px; opacity: 0; }
-            12% { opacity: 1; }
-            22% { top: 130px; left: 95px; }
-            30% { top: 190px; left: 80px; }
-            37% { top: 220px; left: 140px; }
-            44% { top: 220px; left: 200px; opacity: 1; }
-            52%, 100% { opacity: 0; }
+
+            0%,
+            10% {
+                top: 70px;
+                left: 200px;
+                opacity: 0;
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            22% {
+                top: 130px;
+                left: 95px;
+            }
+
+            30% {
+                top: 190px;
+                left: 80px;
+            }
+
+            37% {
+                top: 220px;
+                left: 140px;
+            }
+
+            44% {
+                top: 220px;
+                left: 200px;
+                opacity: 1;
+            }
+
+            52%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes leftToInfinity3 {
-            0%, 10% { top: 70px; left: 200px; opacity: 0; }
-            12% { opacity: 1; }
-            24% { top: 140px; left: 85px; }
-            32% { top: 200px; left: 70px; }
-            39% { top: 230px; left: 150px; }
-            46% { top: 230px; left: 200px; opacity: 1; }
-            54%, 100% { opacity: 0; }
+
+            0%,
+            10% {
+                top: 70px;
+                left: 200px;
+                opacity: 0;
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            24% {
+                top: 140px;
+                left: 85px;
+            }
+
+            32% {
+                top: 200px;
+                left: 70px;
+            }
+
+            39% {
+                top: 230px;
+                left: 150px;
+            }
+
+            46% {
+                top: 230px;
+                left: 200px;
+                opacity: 1;
+            }
+
+            54%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes leftToInfinity4 {
-            0%, 10% { top: 70px; left: 200px; opacity: 0; }
-            12% { opacity: 1; }
-            26% { top: 150px; left: 100px; }
-            34% { top: 210px; left: 85px; }
-            41% { top: 240px; left: 160px; }
-            48% { top: 240px; left: 200px; opacity: 1; }
-            56%, 100% { opacity: 0; }
+
+            0%,
+            10% {
+                top: 70px;
+                left: 200px;
+                opacity: 0;
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            26% {
+                top: 150px;
+                left: 100px;
+            }
+
+            34% {
+                top: 210px;
+                left: 85px;
+            }
+
+            41% {
+                top: 240px;
+                left: 160px;
+            }
+
+            48% {
+                top: 240px;
+                left: 200px;
+                opacity: 1;
+            }
+
+            56%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* Right side bubble paths */
         @keyframes rightToInfinity1 {
-            0%, 10% { top: 70px; left: 200px; opacity: 0; }
-            12% { opacity: 1; }
-            20% { top: 120px; left: 310px; }
-            28% { top: 180px; left: 325px; }
-            35% { top: 210px; left: 270px; }
-            42% { top: 210px; left: 200px; opacity: 1; }
-            50%, 100% { opacity: 0; }
+
+            0%,
+            10% {
+                top: 70px;
+                left: 200px;
+                opacity: 0;
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            20% {
+                top: 120px;
+                left: 310px;
+            }
+
+            28% {
+                top: 180px;
+                left: 325px;
+            }
+
+            35% {
+                top: 210px;
+                left: 270px;
+            }
+
+            42% {
+                top: 210px;
+                left: 200px;
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes rightToInfinity2 {
-            0%, 10% { top: 70px; left: 200px; opacity: 0; }
-            12% { opacity: 1; }
-            22% { top: 130px; left: 310px; }
-            30% { top: 190px; left: 325px; }
-            37% { top: 220px; left: 270px; }
-            44% { top: 220px; left: 200px; opacity: 1; }
-            52%, 100% { opacity: 0; }
+
+            0%,
+            10% {
+                top: 70px;
+                left: 200px;
+                opacity: 0;
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            22% {
+                top: 130px;
+                left: 310px;
+            }
+
+            30% {
+                top: 190px;
+                left: 325px;
+            }
+
+            37% {
+                top: 220px;
+                left: 270px;
+            }
+
+            44% {
+                top: 220px;
+                left: 200px;
+                opacity: 1;
+            }
+
+            52%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes rightToInfinity3 {
-            0%, 10% { top: 70px; left: 200px; opacity: 0; }
-            12% { opacity: 1; }
-            24% { top: 140px; left: 315px; }
-            32% { top: 200px; left: 330px; }
-            39% { top: 230px; left: 260px; }
-            46% { top: 230px; left: 200px; opacity: 1; }
-            54%, 100% { opacity: 0; }
+
+            0%,
+            10% {
+                top: 70px;
+                left: 200px;
+                opacity: 0;
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            24% {
+                top: 140px;
+                left: 315px;
+            }
+
+            32% {
+                top: 200px;
+                left: 330px;
+            }
+
+            39% {
+                top: 230px;
+                left: 260px;
+            }
+
+            46% {
+                top: 230px;
+                left: 200px;
+                opacity: 1;
+            }
+
+            54%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes rightToInfinity4 {
-            0%, 10% { top: 70px; left: 200px; opacity: 0; }
-            12% { opacity: 1; }
-            26% { top: 150px; left: 305px; }
-            34% { top: 210px; left: 315px; }
-            41% { top: 240px; left: 250px; }
-            48% { top: 240px; left: 200px; opacity: 1; }
-            56%, 100% { opacity: 0; }
+
+            0%,
+            10% {
+                top: 70px;
+                left: 200px;
+                opacity: 0;
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            26% {
+                top: 150px;
+                left: 305px;
+            }
+
+            34% {
+                top: 210px;
+                left: 315px;
+            }
+
+            41% {
+                top: 240px;
+                left: 250px;
+            }
+
+            48% {
+                top: 240px;
+                left: 200px;
+                opacity: 1;
+            }
+
+            56%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes infinityReveal {
-            0%, 40% { opacity: 0; stroke-dashoffset: 1000; }
-            45%, 60% { opacity: 1; stroke-dashoffset: 0; }
-            65%, 100% { opacity: 0; }
+
+            0%,
+            40% {
+                opacity: 0;
+                stroke-dashoffset: 1000;
+            }
+
+            45%,
+            60% {
+                opacity: 1;
+                stroke-dashoffset: 0;
+            }
+
+            65%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes outlineAppear {
-            0%, 58% { opacity: 0; }
-            62%, 90% { opacity: 1; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            58% {
+                opacity: 0;
+            }
+
+            62%,
+            90% {
+                opacity: 1;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* I body fill animations */
         @keyframes fillIBodyRise1 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 12px; }
-            50% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 10px; left: 13px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 12px;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 10px;
+                left: 13px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIBodyRise2 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 20px; }
-            51% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 25px; left: 18px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 20px;
+            }
+
+            51% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 25px;
+                left: 18px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIBodyRise3 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
-            52% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 38px; left: 16px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 15px;
+            }
+
+            52% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 38px;
+                left: 16px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIBodyRise4 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 8px; }
-            53% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 50px; left: 10px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 8px;
+            }
+
+            53% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 50px;
+                left: 10px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIBodyRise5 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 18px; }
-            54% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 60px; left: 15px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 18px;
+            }
+
+            54% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 60px;
+                left: 15px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIBodyRise6 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 22px; }
-            55% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 70px; left: 20px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 22px;
+            }
+
+            55% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 70px;
+                left: 20px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIBodyRise7 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 10px; }
-            56% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 78px; left: 12px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 10px;
+            }
+
+            56% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 78px;
+                left: 12px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIBodyRise8 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 16px; }
-            57% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 85px; left: 17px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 16px;
+            }
+
+            57% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 85px;
+                left: 17px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* I dot fill animations */
         @keyframes fillIDotRise1 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 12px; }
-            58% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 12px; left: 13px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 12px;
+            }
+
+            58% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 12px;
+                left: 13px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIDotRise2 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 18px; }
-            59% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 18px; left: 16px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 18px;
+            }
+
+            59% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 18px;
+                left: 16px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIDotRise3 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 8px; }
-            60% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 15px; left: 10px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 8px;
+            }
+
+            60% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 15px;
+                left: 10px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillIDotRise4 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
-            61% { opacity: 1; }
-            72%, 90% { opacity: 1; bottom: 20px; left: 19px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 15px;
+            }
+
+            61% {
+                opacity: 1;
+            }
+
+            72%,
+            90% {
+                opacity: 1;
+                bottom: 20px;
+                left: 19px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* H left bar fill */
         @keyframes fillHLeftRise1 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 12px; }
-            62% { opacity: 1; }
-            75%, 90% { opacity: 1; bottom: 15px; left: 14px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 12px;
+            }
+
+            62% {
+                opacity: 1;
+            }
+
+            75%,
+            90% {
+                opacity: 1;
+                bottom: 15px;
+                left: 14px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHLeftRise2 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 18px; }
-            63% { opacity: 1; }
-            75%, 90% { opacity: 1; bottom: 35px; left: 16px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 18px;
+            }
+
+            63% {
+                opacity: 1;
+            }
+
+            75%,
+            90% {
+                opacity: 1;
+                bottom: 35px;
+                left: 16px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHLeftRise3 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
-            64% { opacity: 1; }
-            75%, 90% { opacity: 1; bottom: 55px; left: 17px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 15px;
+            }
+
+            64% {
+                opacity: 1;
+            }
+
+            75%,
+            90% {
+                opacity: 1;
+                bottom: 55px;
+                left: 17px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHLeftRise4 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 10px; }
-            65% { opacity: 1; }
-            75%, 90% { opacity: 1; bottom: 75px; left: 13px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 10px;
+            }
+
+            65% {
+                opacity: 1;
+            }
+
+            75%,
+            90% {
+                opacity: 1;
+                bottom: 75px;
+                left: 13px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHLeftRise5 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 20px; }
-            66% { opacity: 1; }
-            75%, 90% { opacity: 1; bottom: 95px; left: 18px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 20px;
+            }
+
+            66% {
+                opacity: 1;
+            }
+
+            75%,
+            90% {
+                opacity: 1;
+                bottom: 95px;
+                left: 18px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHLeftRise6 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 14px; }
-            67% { opacity: 1; }
-            75%, 90% { opacity: 1; bottom: 115px; left: 15px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 14px;
+            }
+
+            67% {
+                opacity: 1;
+            }
+
+            75%,
+            90% {
+                opacity: 1;
+                bottom: 115px;
+                left: 15px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* H right bar fill */
         @keyframes fillHRightRise1 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 12px; }
-            68% { opacity: 1; }
-            78%, 90% { opacity: 1; bottom: 15px; left: 14px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 12px;
+            }
+
+            68% {
+                opacity: 1;
+            }
+
+            78%,
+            90% {
+                opacity: 1;
+                bottom: 15px;
+                left: 14px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHRightRise2 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 18px; }
-            69% { opacity: 1; }
-            78%, 90% { opacity: 1; bottom: 35px; left: 16px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 18px;
+            }
+
+            69% {
+                opacity: 1;
+            }
+
+            78%,
+            90% {
+                opacity: 1;
+                bottom: 35px;
+                left: 16px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHRightRise3 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
-            70% { opacity: 1; }
-            78%, 90% { opacity: 1; bottom: 55px; left: 17px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 15px;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            78%,
+            90% {
+                opacity: 1;
+                bottom: 55px;
+                left: 17px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHRightRise4 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 10px; }
-            71% { opacity: 1; }
-            78%, 90% { opacity: 1; bottom: 75px; left: 13px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 10px;
+            }
+
+            71% {
+                opacity: 1;
+            }
+
+            78%,
+            90% {
+                opacity: 1;
+                bottom: 75px;
+                left: 13px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHRightRise5 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 20px; }
-            72% { opacity: 1; }
-            78%, 90% { opacity: 1; bottom: 95px; left: 18px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 20px;
+            }
+
+            72% {
+                opacity: 1;
+            }
+
+            78%,
+            90% {
+                opacity: 1;
+                bottom: 95px;
+                left: 18px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHRightRise6 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 14px; }
-            73% { opacity: 1; }
-            78%, 90% { opacity: 1; bottom: 115px; left: 15px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 14px;
+            }
+
+            73% {
+                opacity: 1;
+            }
+
+            78%,
+            90% {
+                opacity: 1;
+                bottom: 115px;
+                left: 15px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* H bridge fill */
         @keyframes fillHBridgeRise1 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 15px; }
-            74% { opacity: 1; }
-            80%, 90% { opacity: 1; bottom: 12px; left: 20px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 15px;
+            }
+
+            74% {
+                opacity: 1;
+            }
+
+            80%,
+            90% {
+                opacity: 1;
+                bottom: 12px;
+                left: 20px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHBridgeRise2 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 35px; }
-            75% { opacity: 1; }
-            80%, 90% { opacity: 1; bottom: 15px; left: 38px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 35px;
+            }
+
+            75% {
+                opacity: 1;
+            }
+
+            80%,
+            90% {
+                opacity: 1;
+                bottom: 15px;
+                left: 38px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHBridgeRise3 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 55px; }
-            76% { opacity: 1; }
-            80%, 90% { opacity: 1; bottom: 12px; left: 52px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 55px;
+            }
+
+            76% {
+                opacity: 1;
+            }
+
+            80%,
+            90% {
+                opacity: 1;
+                bottom: 12px;
+                left: 52px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
+
         @keyframes fillHBridgeRise4 {
-            0%, 48% { opacity: 0; bottom: -10px; left: 25px; }
-            77% { opacity: 1; }
-            80%, 90% { opacity: 1; bottom: 18px; left: 28px; }
-            95%, 100% { opacity: 0; }
+
+            0%,
+            48% {
+                opacity: 0;
+                bottom: -10px;
+                left: 25px;
+            }
+
+            77% {
+                opacity: 1;
+            }
+
+            80%,
+            90% {
+                opacity: 1;
+                bottom: 18px;
+                left: 28px;
+            }
+
+            95%,
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes finalLettersGlow {
-            0%, 80% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-            83%, 92% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            96%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+
+            0%,
+            80% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+
+            83%,
+            92% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            96%,
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero h2 { font-size: 1.5rem; }
-            nav ul { gap: 1rem; font-size: 0.9rem; }
-            .section { padding: 3rem 1rem; }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
             .logo-animation-container {
                 width: 300px;
                 height: 300px;
             }
+            .logo-section {
+        gap: 0.8rem;
+    }
+    
+    .logo-name {
+        font-size: 1.2rem;
+    }
+    
+    .logo-bubbles {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .nav-bubble:nth-child(1) {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .nav-bubble:nth-child(2) {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .nav-bubble:nth-child(3) {
+        width: 13px;
+        height: 13px;
+    }
+    
+    nav {
+        padding: 1rem 1rem;
+    }
+    
+    nav .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    /* For very small screens */
+    @media (max-width: 480px) {
+        nav ul {
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .logo-name {
+            font-size: 1rem;
+        }
+    }
         }
     </style>
 </head>
+
 <body>
     <nav>
         <div class="container">
@@ -1136,13 +2237,9 @@
                     <!-- Infinity symbol path -->
                     <div class="infinity-path">
                         <svg class="infinity-svg" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M 20,70 Q 70,20 90,70 T 140,70 M 140,70 Q 190,120 210,70 T 260,70" 
-                                  fill="none" 
-                                  stroke="url(#infinityGradient)" 
-                                  stroke-width="3" 
-                                  stroke-linecap="round"
-                                  stroke-dasharray="1000"
-                                  stroke-dashoffset="1000"/>
+                            <path d="M 20,70 Q 70,20 90,70 T 140,70 M 140,70 Q 190,120 210,70 T 260,70" fill="none"
+                                stroke="url(#infinityGradient)" stroke-width="3" stroke-linecap="round"
+                                stroke-dasharray="1000" stroke-dashoffset="1000" />
                             <defs>
                                 <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                     <stop offset="0%" style="stop-color:#40E0D0;stop-opacity:0.6" />
@@ -1226,47 +2323,68 @@
                         <div class="dream-bubble"></div>
                     </span>
                 </h2>
-                <p>I love bringing ideas to life in every possible way. A lifetime learner exploring games, psychology, neuroscience, VR, AI, athletes, prediction, manga, art, and everything in between. <br>Simply: I dream, I create.</p>
+                <p>I love bringing ideas to life in every possible way. A lifetime learner exploring games, psychology,
+                    neuroscience, VR, AI, athletes, prediction, manga, art, and everything in between. <br>Simply: I
+                    dream, I create.</p>
             </div>
         </div>
     </section>
 
     <section class="section">
         <h2>My Universe</h2>
-        
+
         <div class="fields-container">
-            <span class="field-tag" style="--i: 1"><i class="fa-brands fa-unity" style="color: #3f88c0;"></i> Unity Dev</span>
-            <span class="field-tag" style="--i: 2"><i class="fa-solid fa-mask" style="color: #3f88c0;"></i> VR Dev</span>
-            <span class="field-tag" style="--i: 3"><i class="fa-solid fa-leaf" style="color: #3f88c0;"></i> Psychology</span>
-            <span class="field-tag" style="--i: 4"><i class="fa-solid fa-atom" style="color: #3f88c0;"></i> AI & NLP</span>
-            <span class="field-tag" style="--i: 5"><i class="fa-solid fa-diagram-project" style="color: #3f88c0;"></i> Tech PM</span>
-            <span class="field-tag" style="--i: 6"><i class="fa-solid fa-hand-holding-medical" style="color: #3f88c0;"></i> Addiction Research</span>
-            <span class="field-tag" style="--i: 7"><i class="fa-solid fa-book-open-reader" style="color: #3f88c0;"></i> Influence Research</span>
-            <span class="field-tag" style="--i: 8"><i class="fa-solid fa-person-running" style="color: #3f88c0;"></i> Athletics Neuropsychology</span>
-            <span class="field-tag" style="--i: 9"><i class="fa-regular fa-futbol" style="color: #3f88c0;"></i> Athletics Performance</span>
-            <span class="field-tag" style="--i: 10"><i class="fa-solid fa-pen-nib" style="color: #3f88c0;"></i> Mangas & Scenarios</span>
-            <span class="field-tag" style="--i: 11"><i class="fa-solid fa-paintbrush" style="color: #3f88c0;"></i> Digital & Traditional Art</span>
-            <span class="field-tag" style="--i: 12"><i class="fa-solid fa-cube" style="color: #3f88c0;"></i> 3D Modeling & Sculpture</span>
-            <span class="field-tag" style="--i: 13"><i class="fi fi-ss-boxing-glove" style="color: #3f88c0;"></i> Boxing</span>
-            <span class="field-tag" style="--i: 14"><i class="fi fi-ss-shuttlecock" style="color: #3f88c0;"></i> Badminton</span>
-            <span class="field-tag" style="--i: 15"><i class="fi fi-ss-olive" style="color: #3f88c0;"></i> <i class="fi fi-ss-fish" style="color: #3f88c0;"></i> Mediterranean</span>
-            <span class="field-tag" style="--i: 16"><img src="https://flagcdn.com/tn.svg" alt="Tunisia flag" width="24" height="18" style="vertical-align:-0.125em"></span>
+            <span class="field-tag" style="--i: 1"><i class="fa-brands fa-unity" style="color: #3f88c0;"></i> Unity
+                Dev</span>
+            <span class="field-tag" style="--i: 2"><i class="fa-solid fa-mask" style="color: #3f88c0;"></i> VR
+                Dev</span>
+            <span class="field-tag" style="--i: 3"><i class="fa-solid fa-leaf" style="color: #3f88c0;"></i>
+                Psychology</span>
+            <span class="field-tag" style="--i: 4"><i class="fa-solid fa-atom" style="color: #3f88c0;"></i> AI &
+                NLP</span>
+            <span class="field-tag" style="--i: 5"><i class="fa-solid fa-diagram-project" style="color: #3f88c0;"></i>
+                Tech PM</span>
+            <span class="field-tag" style="--i: 6"><i class="fa-solid fa-hand-holding-medical"
+                    style="color: #3f88c0;"></i> Addiction Research</span>
+            <span class="field-tag" style="--i: 7"><i class="fa-solid fa-book-open-reader" style="color: #3f88c0;"></i>
+                Influence Research</span>
+            <span class="field-tag" style="--i: 8"><i class="fa-solid fa-person-running" style="color: #3f88c0;"></i>
+                Athletics Neuropsychology</span>
+            <span class="field-tag" style="--i: 9"><i class="fa-regular fa-futbol" style="color: #3f88c0;"></i>
+                Athletics Performance</span>
+            <span class="field-tag" style="--i: 10"><i class="fa-solid fa-pen-nib" style="color: #3f88c0;"></i> Mangas &
+                Scenarios</span>
+            <span class="field-tag" style="--i: 11"><i class="fa-solid fa-paintbrush" style="color: #3f88c0;"></i>
+                Digital & Traditional Art</span>
+            <span class="field-tag" style="--i: 12"><i class="fa-solid fa-cube" style="color: #3f88c0;"></i> 3D Modeling
+                & Sculpture</span>
+            <span class="field-tag" style="--i: 13"><i class="fi fi-ss-boxing-glove" style="color: #3f88c0;"></i>
+                Boxing</span>
+            <span class="field-tag" style="--i: 14"><i class="fi fi-ss-shuttlecock" style="color: #3f88c0;"></i>
+                Badminton</span>
+            <span class="field-tag" style="--i: 15"><i class="fi fi-ss-olive" style="color: #3f88c0;"></i> <i
+                    class="fi fi-ss-fish" style="color: #3f88c0;"></i> Mediterranean</span>
+            <span class="field-tag" style="--i: 16"><img src="https://flagcdn.com/tn.svg" alt="Tunisia flag" width="24"
+                    height="18" style="vertical-align:-0.125em"></span>
         </div>
 
         <div class="about-grid">
             <div class="about-card">
                 <h3>🩵 My Approach</h3>
-                <p>I don't just create – I modernize even the most complicated fields. From sports to neuroscience to psychology, I bring fresh perspectives and cutting-edge technology to traditional domains.</p>
+                <p>I don't just create – I modernize even the most complicated fields. From sports to neuroscience to
+                    psychology, I bring fresh perspectives and cutting-edge technology to traditional domains.</p>
             </div>
 
             <div class="about-card">
                 <h3>🧩 Innovation Mindset</h3>
-                <p>Staying ahead of trends while maintaining my unique artistic style. Every project reflects my commitment to development, creativity, and pushing boundaries.</p>
+                <p>Staying ahead of trends while maintaining my unique artistic style. Every project reflects my
+                    commitment to development, creativity, and pushing boundaries.</p>
             </div>
 
             <div class="about-card">
                 <h3>📖 Lifelong Learning</h3>
-                <p>Forever curious, forever growing. I dive deep into diverse fields because innovation happens at the intersection of different disciplines.</p>
+                <p>Forever curious, forever growing. I dive deep into diverse fields because innovation happens at the
+                    intersection of different disciplines.</p>
             </div>
         </div>
 
@@ -1274,17 +2392,23 @@
             <h2>Certifications</h2>
             <div class="certificates-grid">
                 <div class="certificate-card">
-                    <div class="certificate-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Logo_of_the_Technical_University_of_Munich.svg" width="60" height="30" style="vertical-align: middle;"></div>
+                    <div class="certificate-icon"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Logo_of_the_Technical_University_of_Munich.svg"
+                            width="60" height="30" style="vertical-align: middle;"></div>
                     <h4>Master of Science in Informatics: Games Engineering</h4>
                     <p>TUM</p>
                 </div>
                 <div class="certificate-card">
-                    <div class="certificate-icon"><img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" width="50" height="50" style="vertical-align: middle;"></div>
+                    <div class="certificate-icon"><img
+                            src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" width="50"
+                            height="50" style="vertical-align: middle;"></div>
                     <h4>Professional Diploma in Neurobiology and Psychology in Team Sports</h4>
                     <p>Barça Innovation Hub</p>
                 </div>
                 <div class="certificate-card">
-                    <div class="certificate-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Logo_of_the_Technical_University_of_Munich.svg" width="60" height="30" style="vertical-align: middle;"></div>
+                    <div class="certificate-icon"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Logo_of_the_Technical_University_of_Munich.svg"
+                            width="60" height="30" style="vertical-align: middle;"></div>
                     <h4>Bachelor of Science in Informatics: Games Engineering</h4>
                     <p>TUM</p>
                 </div>
@@ -1292,16 +2416,22 @@
         </div>
 
         <div class="contact-section">
-            <h2>Let's Connect</h2>            
+            <h2>Let's Connect</h2>
             <div class="social-links">
-                <a href="https://www.instagram.com/hellali.imen/" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/imene-hellali/" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://wa.me/yourphonenumber" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:hellali_imene@yahoo.fr" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://discord.com/users/pipiggly#3057" class="social-icon" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="https://www.instagram.com/hellali.imen/" class="social-icon" title="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/imene-hellali/" class="social-icon" title="LinkedIn"><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/yourphonenumber" class="social-icon" title="WhatsApp"><i
+                        class="fab fa-whatsapp"></i></a>
+                <a href="mailto:hellali_imene@yahoo.fr" class="social-icon" title="Email"><i
+                        class="fas fa-envelope"></i></a>
+                <a href="https://discord.com/users/pipiggly#3057" class="social-icon" title="Discord"><i
+                        class="fa-brands fa-discord"></i></a>
             </div>
 
-            <a href="documents/CV-Imene-Hellali.pdf" class="cv-download"><i class="fas fa-file-pdf"></i> Download My CV</a>
+            <a href="documents/CV-Imene-Hellali.pdf" class="cv-download"><i class="fas fa-file-pdf"></i> Download My
+                CV</a>
         </div>
     </section>
 
@@ -1310,4 +2440,5 @@
         <p style="margin-top: 0.5rem; opacity: 0.9;">Creating at the intersection of art, science, and technology</p>
     </footer>
 </body>
+
 </html>
