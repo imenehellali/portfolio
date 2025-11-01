@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/solid/straight.css">
+    <title>Games - Imène Hellali</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquoise: #40E0D0;
+            --pink: #FFB6D9;
+            --light-blue: #A8D8EA;
+            --light-purple: #D4A5FF;
+            --beige: #f5e6d3;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #F5E6D3 0%, #FFE5EC 50%, #E0F4FF 100%);
+            background-attachment: fixed;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            padding: 2px;
+        }
+
+        .logo-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--turquoise);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--turquoise), var(--pink));
+            background-size: 200% 100%;
+            animation: gradientSlide 2s linear infinite;
+        }
+
+        .page-header {
+            margin-top: 100px;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            color: #4a5568;
+        }
+
+        .games-grid {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .game-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            border: 3px solid transparent;
+        }
+
+        .game-panel:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--turquoise);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .game-content {
+            padding: 2rem;
+        }
+
+        .game-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .game-description {
+            color: #4a5568;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .pdf-carousel {
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 1.5rem;
+        }
+
+        .pdf-carousel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .pdf-scroll {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--turquoise) rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .pdf-scroll::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .pdf-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, var(--turquoise), var(--pink));
+            border-radius: 10px;
+        }
+
+        .pdf-item {
+            flex: 0 0 auto;
+            width: 150px;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            animation: colorFlow 5s ease infinite;
+            animation-delay: calc(var(--i) * 0.5s);
+        }
+
+        .pdf-item:hover {
+            transform: scale(1.02);
+            border: 2px solid var(--turquoise);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .pdf-icon {
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .pdf-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .pdf-download {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .pdf-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .impact-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--beige), var(--turquoise));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s ease infinite;
+        }
+        .links-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.2rem 0.8rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--light-blue));
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-button.appstore {
+            background: linear-gradient(135deg, #000, #333);
+        }
+
+        .link-button.playstore {
+            background: linear-gradient(135deg, #34A853, #4285F4);
+        }
+
+        .link-button.github {
+            background: linear-gradient(135deg, #6e5494, #9b4dca);
+        }
+
+        .link-button.steam {
+            background: linear-gradient(135deg, #001658, #77c9ff);
+        }
+
+        /* Video Carousel Styles */
+        .video-carousel-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        .video-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 90%;
+            left: 5%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .carousel-slide.prev {
+            top: -50px;
+            transform: scale(0.8) translateY(-20px);
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .carousel-slide.active {
+            top: 50px;
+            transform: scale(1);
+            opacity: 1;
+            z-index: 3;
+        }
+
+        .carousel-slide.next {
+            top: 450px;
+            transform: scale(0.8) translateY(20px);
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .carousel-slide:hover:not(.active) {
+            opacity: 0.8;
+            transform: scale(0.85);
+        }
+
+        .carousel-video {
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.8), rgba(255, 182, 217, 0.8));
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 5rem;
+        }
+
+        @keyframes gradientMove {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes gradientSlide {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        @keyframes colorFlow {
+
+            0%,
+            100% {
+                border-color: var(--turquoise);
+            }
+
+            25% {
+                border-color: var(--pink);
+            }
+
+            50% {
+                border-color: var(--light-purple);
+            }
+
+            75% {
+                border-color: var(--light-blue);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo-section" style="text-decoration: none;">
+                <img src="logos/your-logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-name">Imène Hellali</div>
+            </a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html" class="active">Games</a></li>
+                <li><a href="apps.html">Apps & Websites</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="hobbies.html">Hobbies</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1><i class="fa-solid fa-gamepad"></i> Games Portfolio</h1>
+        <p>Interactive experiences where creativity meets innovation</p>
+    </div>
+
+    <div class="games-grid">
+        <!-- Game 1 -->
+        <div class="game-panel">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/6DvPAJeofpY" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="game-content">
+                <div class="impact-badge"><i class="fi fi-ss-comet"style="color:  #f5e6d3;"></i> High Impact</div>
+                <h2 class="game-title">Profiling VR</h2>
+                <p class="game-description">
+                    A groundbreaking application combining Virtual Reality and Machine Learning for implicit measuring and profiling of AUD patients. Based on BFI, UPPS, and BIS-11 questionnaires, this tool revolutionizes behavioral assessment. Helping healthcare professionals gain deeper insights into patient behavior through innovative technology, improving treatment outcomes and patient care quality.
+                <div class="pdf-carousel">
+                    <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Research Documentation</div>
+                    <div class="pdf-scroll">
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">Thesis</div>
+                            <a href="documents/DesignDoc/design-doc.pdf" class="pdf-download">Download</a>
+                        </div>
+                        <div class="pdf-item" style="--i: 2">
+                            <div class="pdf-icon">🔬</div>
+                            <div class="pdf-name">Research</div>
+                            <a href="documents/Research/research.pdf" class="pdf-download">Download</a>
+                        </div>
+                        <div class="pdf-item" style="--i: 3">
+                            <div class="pdf-icon">⚙️</div>
+                            <div class="pdf-name">Tech Doc</div>
+                            <a href="documents/TechDoc/tech-doc.pdf" class="pdf-download">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="links-section">
+                    <a href="https://github.com/imenehellali/Questionaires" class="link-button github">
+                        <i class="fab fa-github"></i>Questionnires
+                    </a>
+                    <a href="https://github.com/imenehellali/AV" class="link-button github">
+                        <i class="fab fa-github"></i> VR
+                    </a>
+                    <a href="to-add" class="link-button steam">
+                        <i class="fa-brands fa-steam"></i> VR
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Game 2 -->
+        <div class="game-panel" style="grid-column: 1 / -1;">
+            <div class="game-content">
+                <div class="impact-badge"><i class="fi fi-ss-comet"style="color:  #f5e6d3;"></i> High Impact</div>
+                <h2 class="game-title">Altes Muc</h2>
+                <p class="game-description">
+                    A research-game which was developet for the sole purpose to conduct the research.
+                </p>
+            </div>
+
+            <div class="video-carousel-container">
+                <div class="video-carousel" id="researchCarousel">
+                    <div class="carousel-slide prev" data-index="0">
+                        <iframe class="carousel-video" src="https://www.youtube.com/embed/XnlARQ3cMtw" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="carousel-slide active" data-index="1">
+                        <iframe class="carousel-video" src="https://www.youtube.com/embed/nOagbRssxiI" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="carousel-slide next" data-index="2">
+                        <iframe class="carousel-video" src="https://www.youtube.com/embed/ljt0cBe_SSY" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="carousel-slide" data-index="3" style="display: none;">
+                        <iframe class="carousel-video" src="https://www.youtube.com/embed/GLIfiKC9vIg" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="carousel-slide" data-index="4" style="display: none;">
+                        <iframe class="carousel-video" src="https://www.youtube.com/embed/2BPhGO6UBxk" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="carousel-slide" data-index="5" style="display: none;">
+                        <iframe class="carousel-video" src="https://www.youtube.com/embed/-5F_3WvtcRM" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="prevSlide()">↑</button>
+                    <button class="carousel-btn" onclick="nextSlide()">↓</button>
+                </div>
+            </div>
+
+            <div class="game-content">
+                <div class="pdf-carousel">
+                    <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Research Documentation</div>
+                    <div class="pdf-scroll">
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">✍🏼</div>
+                            <div class="pdf-name">Base Research</div>
+                            <a href="documents/Research/poc-research.pdf" class="pdf-download">Download</a>
+                        </div>
+                        <div class="pdf-item" style="--i: 2">
+                            <div class="pdf-icon">🔬</div>
+                            <div class="pdf-name">Research</div>
+                            <a href="documents/Research/methodology.pdf" class="pdf-download">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="links-section">
+                    <a href="https://github.com/imenehellali/AltesMuenchen" class="link-button github">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game 3 -->
+        <div class="game-panel">
+            <div class="video-container">
+                <iframe src="to-Add" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="game-content">
+                <h2 class="game-title">Light Of Daedalus</h2>
+                <p class="game-description">
+                    A Level based Virtual Reality puzzle game, which challenges the player’s spatial awareness and color
+                    theory in a fun and advanced graphic environment. </p>
+                <div class="pdf-carousel">
+                    <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Documentation</div>
+                    <div class="pdf-scroll">
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">Design Doc</div>
+                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="links-section">
+                    <a href="https://github.com/imenehellali/LightOfDaedalus" class="link-button github">
+                        <i class="fab fa-github"></i> Code 
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game 4 -->
+        <div class="game-panel">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Pgj2FYaGX-g" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="game-content">
+                <div class="impact-badge"><i class="fi fi-ss-comet"style="color:  #f5e6d3;"></i> High Impact</div>
+                <h2 class="game-title">Fire department</h2>
+                <p class="game-description">
+                    A digital interface that assists the Emergency services’ officers during the intervention in
+                    progress, by providing different tools to accelerate the communication between the officers and
+                    exchange of commands. </p>
+                <div class="pdf-carousel">
+                    <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Documentation</div>
+                    <div class="pdf-scroll">
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">Thesis</div>
+                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="links-section">
+                    <a href="https://github.com/imenehellali/BA" class="link-button github">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                    <a href="to-Add" class="link-button appstore">
+                        <i class="fab fa-apple"></i>
+                    </a>
+                    <a href="To-add" class="link-button playstore">
+                        <i class="fab fa-google-play"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game 5 -->
+        <div class="game-panel">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/uXpHwlGJ_Os" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="game-content">
+                <h2 class="game-title">Fat Owl</h2>
+                <p class="game-description">
+                    An endless runner game, where the player controls the moving character with the Kinect. </p>
+
+                <div class="links-section">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Game 6 -->
+        <div class="game-panel">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/iPZw8np6Gtk" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="game-content">
+                <h2 class="game-title">Proxym</h2>
+                <p class="game-description">
+                    A MMO RPG location based mobile game.
+                </p>
+
+
+                <div class="links-section">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Game 7 -->
+        <div class="game-panel">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/1sXL3x-Cp2w" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="game-content">
+                <h2 class="game-title">Izanami&Izanagi</h2>
+                <p class="game-description">
+                    2D puzzle, and coop escape room mobile game, that will teach its players the story of the creation
+                    of japan from the point of view of the Shinto religion. </p>
+
+                <div class="pdf-carousel">
+                    <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Documentation</div>
+                    <div class="pdf-scroll">
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">Design Doc</div>
+                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="links-section">
+
+                </div>
+            </div>
+        </div>
+        <!-- Game 8 -->
+        <div class="game-panel">
+            <div class="video-container">
+                <iframe src="to-add" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="game-content">
+                <h2 class="game-title">Cross Light</h2>
+                <p class="game-description">
+                    A Virtual Reality exploration game, created in the context of interdisciplinary course with the
+                    department of Architecture to enjoy specific architectural features. </p>
+
+                <div class="pdf-carousel">
+                    <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Documentation</div>
+                    <div class="pdf-scroll">
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">Design Doc</div>
+                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="links-section">
+                    <a href="https://github.com/imenehellali/CrossLight" class="link-button github">
+                        <i class="fab fa-github"></i> Code 
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Game 9 -->
+        <div class="game-panel">
+            <div class="video-container">
+                <iframe src="to-add" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="game-content">
+                <h2 class="game-title">HallPill</h2>
+                <p class="game-description">
+                    2D puzzle, and coop escape room mobile game, that will teach its players the story of the creation
+                    of japan from the point of view of the Shinto religion. </p>
+
+                <div class="pdf-carousel">
+                    <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Documentation</div>
+                    <div class="pdf-scroll">
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">Design Doc</div>
+                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="links-section">
+                    <a href="https://github.com/imenehellali/HallPill" class="link-button github">
+                        <i class="fab fa-github"></i> Code 
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Imène Hellali - All Rights Reserved</p>
+        <p style="margin-top: 0.5rem; opacity: 0.9;">Playing at the intersection of creativity and technology</p>
+    </footer>
+
+    <script>
+        let currentIndex = 1;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function updateCarousel() {
+            slides.forEach((slide, index) => {
+                slide.style.display = 'none';
+                slide.classList.remove('prev', 'active', 'next');
+            });
+
+            const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            const nextIndex = (currentIndex + 1) % totalSlides;
+
+            slides[prevIndex].style.display = 'block';
+            slides[prevIndex].classList.add('prev');
+
+            slides[currentIndex].style.display = 'block';
+            slides[currentIndex].classList.add('active');
+
+            slides[nextIndex].style.display = 'block';
+            slides[nextIndex].classList.add('next');
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        // Click on prev/next slides to navigate
+        document.querySelectorAll('.carousel-slide').forEach((slide, index) => {
+            slide.addEventListener('click', function () {
+                if (this.classList.contains('prev')) {
+                    prevSlide();
+                } else if (this.classList.contains('next')) {
+                    nextSlide();
+                }
+            });
+        });
+
+        // Initialize
+        updateCarousel();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps & Websites - Imène Hellali</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/solid/straight.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquoise: #40E0D0;
+            --pink: #FFB6D9;
+            --light-blue: #A8D8EA;
+            --light-purple: #D4A5FF;
+            --beige: #F5E6D3;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #F5E6D3 0%, #FFE5EC 50%, #E0F4FF 100%);
+            background-attachment: fixed;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--turquoise);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--turquoise), var(--pink));
+            background-size: 200% 100%;
+            animation: gradientSlide 2s linear infinite;
+        }
+
+        .page-header {
+            margin-top: 100px;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .apps-grid {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .app-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .app-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--turquoise), var(--pink), var(--light-purple), var(--light-blue));
+            background-size: 300% 100%;
+            animation: gradientSlide 3s linear infinite;
+        }
+
+        .app-panel:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--pink);
+        }
+
+        .impact-badges {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: row-reverse;
+            /* newest badge sits at the far right */
+            gap: 10px;
+            /* space between badges */
+            z-index: 10;
+        }
+
+        /* make individual badges non-absolute */
+        .impact-badge {
+            position: static;
+            /* was absolute */
+            background: linear-gradient(135deg, var(--turquoise), var(--beige));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s ease infinite;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: linear-gradient(135deg, var(--light-blue), var(--light-purple));
+            overflow: hidden;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.3), rgba(255, 182, 217, 0.3));
+            font-size: 4rem;
+            color: white;
+        }
+
+        .app-content {
+            padding: 2rem;
+        }
+
+        .app-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--pink), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-description {
+            color: #4a5568;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-section {
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.1), rgba(255, 182, 217, 0.1));
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-section h4 {
+            color: var(--turquoise);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .impact-section p {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        .pdf-carousel {
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 1.5rem;
+        }
+
+        .pdf-carousel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .pdf-scroll {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--pink) rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .pdf-scroll::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .pdf-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, var(--pink), var(--light-purple));
+            border-radius: 10px;
+        }
+
+        .pdf-item {
+            flex: 0 0 auto;
+            width: 150px;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            animation: colorFlow 5s ease infinite;
+            animation-delay: calc(var(--i) * 0.5s);
+        }
+
+        .pdf-item:hover {
+            transform: scale(1.02);
+            border: 2px solid var(--turquoise);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .pdf-icon {
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .pdf-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+
+        .pdf-download {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, var(--pink), var(--light-purple));
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .pdf-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .links-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.2rem 0.8rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--light-blue));
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-button.website {
+            background: linear-gradient(135deg, var(--turquoise), var(--light-blue));
+        }
+
+        .link-button.appstore {
+            background: linear-gradient(135deg, #000, #8b8a8a);
+        }
+
+        .link-button.playstore {
+            background: linear-gradient(135deg, #6fe08d, #3461af);
+        }
+
+        .link-button.github {
+            background: linear-gradient(135deg, #8456ce, #eb96ca);
+        }
+
+        footer {
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.8), rgba(255, 182, 217, 0.8));
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 5rem;
+        }
+
+        @keyframes gradientMove {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes gradientSlide {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        @keyframes colorFlow {
+
+            0%,
+            100% {
+                border-color: var(--turquoise);
+            }
+
+            25% {
+                border-color: var(--pink);
+            }
+
+            50% {
+                border-color: var(--light-purple);
+            }
+
+            75% {
+                border-color: var(--light-blue);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo-section" style="text-decoration: none;">
+                <div class="logo-placeholder">IH</div>
+                <div class="logo-name">Imène Hellali</div>
+            </a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="apps.html" class="active">Apps & Websites</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="hobbies.html">Hobbies</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1><i class="fa-solid fa-dice"></i> Apps & Websites</h1>
+        <p>Technology solutions designed to make a real difference in people's lives</p>
+    </div>
+
+    <div class="apps-grid">
+        <!-- App Panel 1 -->
+        <!--To-ADD-->
+        <!-- App Panel 2 -->
+        <div class="app-panel">
+            <div class="impact-badges">
+                <div class="impact-badge"><i class="fi fi-ss-plant-care" style="color:#f5e6d3;"></i> Mental Health</div>
+                <div class="impact-badge"><i class="fi fi-ss-comet" style="color:#f5e6d3;"></i> High Impact</div>
+                <!-- add more badges; each new one will appear to the left of the previous -->
+            </div>
+            <div class="video-container">
+                <div class="video-placeholder">🌸</div>
+            </div>
+            <div class="app-content">
+                <h2 class="app-title">Mental Health Platform</h2>
+                <p class="app-description">
+                    A comprehensive web and mobile based platform designed to .... Upcoming ....
+                </p>
+
+                <div class="impact-section">
+                    <h4><i class="fi fi-ss-heart-partner-handshake"></i> Making a Difference</h4>
+                    <p>Empowering individuals to heal their inner wounds and externalize their pain through .... Upcoming ....
+                        <!--evidence-based digital interventions and supportive community features.--></p>
+                </div>
+
+                <div class="pdf-carousel">
+                    <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Documentation</div>
+                    <div class="pdf-scroll">
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">User Guide</div>
+                            <a href="pdfs/user-guide.pdf" class="pdf-download">Download</a>
+                        </div>
+                        <div class="pdf-item" style="--i: 2">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">FAQ</div>
+                            <a href="pdfs/case-studies.pdf" class="pdf-download">Download</a>
+                        </div>
+                        <div class="pdf-item" style="--i: 2">
+                            <div class="pdf-icon">🔊</div>
+                            <div class="pdf-name">Feedbacks</div>
+                            <a href="pdfs/case-studies.pdf" class="pdf-download">Download</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="links-section">
+                    <a href="to-Add" class="link-button website">
+                        <i class="fas fa-globe"></i> Website
+                    </a>
+                    <a href="To-Add" class="link-button github">
+                        <i class="fab fa-github"></i> Source
+                    </a>
+                    <a href="To-Add" class="link-button appstore">
+                        <i class="fab fa-apple"></i>
+                    </a>
+                    <a href="To-Add" class="link-button playstore">
+                        <i class="fab fa-google-play"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more app panels as needed -->
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Imène Hellali - All Rights Reserved</p>
+        <p style="margin-top: 0.5rem; opacity: 0.9;">Building technology that transforms lives</p>
+    </footer>
+</body>
+
+</html>

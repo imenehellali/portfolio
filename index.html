@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/solid/straight.css">
+    <title>Imène Hellali - Welcome to My World</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquoise: #40E0D0;
+            --pink: #FFB6D9;
+            --light-blue: #A8D8EA;
+            --light-purple: #D4A5FF;
+            --beige: #F5E6D3;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #F5E6D3 0%, #FFE5EC 50%, #E0F4FF 100%);
+            background-attachment: fixed;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--turquoise);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--turquoise), var(--pink));
+            animation: gradientSlide 2s linear infinite;
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(64, 224, 208, 0.1) 0%, transparent 70%),
+                        radial-gradient(circle, rgba(255, 182, 217, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dream-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .dream-bubble {
+            position: absolute;
+            top: -30px;
+            right: -40px;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, rgba(255, 182, 217, 0.6), rgba(168, 216, 234, 0.6));
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .dream-bubble::before,
+        .dream-bubble::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(135deg, rgba(255, 182, 217, 0.5), rgba(168, 216, 234, 0.5));
+            border-radius: 50%;
+        }
+
+        .dream-bubble::before {
+            width: 20px;
+            height: 20px;
+            bottom: -15px;
+            left: -10px;
+        }
+
+        .dream-bubble::after {
+            width: 12px;
+            height: 12px;
+            bottom: -25px;
+            left: -15px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite, fadeInUp 0.8s ease-out;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #4a5568;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #718096;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            border: 2px solid transparent;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            border: 2px solid var(--turquoise);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .about-card p {
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .field-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            color: white;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin: 0.3rem;
+            font-weight: 600;
+            animation: float 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+
+        .fields-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 3rem 0;
+        }
+
+        .certificates-section {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .certificate-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border-top: 4px solid;
+            border-image: linear-gradient(90deg, var(--turquoise), var(--pink)) 1;
+        }
+
+        .certificate-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .certificate-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            margin: 4rem auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cv-download {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            background-size: 200% 200%;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            animation: gradientMove 3s ease infinite;
+            margin-top: 2rem;
+        }
+
+        .cv-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        footer {
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.8), rgba(255, 182, 217, 0.8));
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes gradientSlide {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1.5rem; }
+            nav ul { gap: 1rem; font-size: 0.9rem; }
+            .section { padding: 3rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-placeholder">IH</div>
+                <div class="logo-name">Imène Hellali</div>
+            </div>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="apps.html">Apps & Websites</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="hobbies.html">Hobbies</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to My World</h1>
+            <h2>
+                <span class="dream-container">
+                    Bringing Dreams Into Reality
+                    <div class="dream-bubble"></div>
+                </span>
+            </h2>
+            <p>I love bringing ideas to life in every possible way. A lifetime learner exploring games, psychology, neuroscience, VR, AI, , athletes, prediction, manga, art, and everything in between. <br>Simply: I dream, I create.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>My Universe </h2>
+        
+        <div class="fields-container">
+            <span class="field-tag" style="--i: 1"><i class="fa-brands fa-unity"style="color: #3f88c0;"></i> Unity Dev</span>
+            <span class="field-tag" style="--i: 2"><i class="fa-solid fa-mask"style="color: #3f88c0;"></i> VR Dev</span>
+            <span class="field-tag" style="--i: 3"><i class="fa-solid fa-leaf"style="color: #3f88c0;"></i> Psychology</span>
+            <span class="field-tag" style="--i: 4"><i class="fa-solid fa-atom"style="color: #3f88c0;"></i> AI & NLP</span>
+            <span class="field-tag" style="--i: 5"><i class="fa-solid fa-diagram-project"style="color: #3f88c0;"></i> Tech PM</span>
+            <span class="field-tag" style="--i: 6"><i class="fa-solid fa-hand-holding-medical"style="color: #3f88c0;"></i> Addiction Research</span>
+            <span class="field-tag" style="--i: 7"><i class="fa-solid fa-book-open-reader"style="color: #3f88c0;"></i> Influence Research</span>
+            <span class="field-tag" style="--i: 8"><i class="fa-solid fa-person-running" style="color: #3f88c0;"></i> Athletics Neuropschology</span>
+            <span class="field-tag" style="--i: 9"><i class="fa-regular fa-futbol" style="color: #3f88c0;"></i> Athletics Performance</span>
+            <span class="field-tag" style="--i: 10"><i class="fa-solid fa-pen-nib"style="color: #3f88c0;"></i> Mangas & Scenarios</span>
+            <span class="field-tag" style="--i: 11"><i class="fa-solid fa-paintbrush"style="color: #3f88c0;"></i> Digital & Traditional Art</span>
+            <span class="field-tag" style="--i: 12"><i class="fa-solid fa-cube"style="color: #3f88c0;"></i> 3D Modeling & Sculpture</span>
+            <span class="field-tag" style="--i: 13"><i class="fi fi-ss-boxing-glove"style="color: #3f88c0;"></i> Boxing </span>
+            <span class="field-tag" style="--i: 14"><i class="fi fi-ss-shuttlecock"style="color: #3f88c0;"></i> Badminton </span>
+            <span class="field-tag" style="--i: 15"><i class="fi fi-ss-olive" style="color: #3f88c0;"></i> <i class="fi fi-ss-fish" style="color: #3f88c0;"></i> Mediterranean </span>
+            <span class="field-tag" style="--i: 16"> <img src="https://flagcdn.com/tn.svg" alt="Tunisia flag" width="24" height="18" style="vertical-align:-0.125em"></span>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>🩵 My Approach</h3>
+                <p>I don't just create – I modernize even the most complicated fields. From sports to neuroscience to psychology, I bring fresh perspectives and cutting-edge technology to traditional domains.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>🧩 Innovation Mindset</h3>
+                <p>Staying ahead of trends while maintaining my unique artistic style. Every project reflects my commitment to development, creativity, and pushing boundaries.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>📖 Lifelong Learning</h3>
+                <p>Forever curious, forever growing. I dive deep into diverse fields because innovation happens at the intersection of different disciplines.</p>
+            </div>
+        </div>
+
+        <div class="certificates-section">
+            <h2>Certifications</h2>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <div class="certificate-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Logo_of_the_Technical_University_of_Munich.svg" width="60" height="30" style="vertical-align: middle;"></div>
+                    <h4>Master of Science in Informatics: Games Engineering</h4>
+                    <p>TUM</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" width="50" height="50"style="vertical-align: middle;"></div>
+                    <h4>Professional Diploma in Neurobiology and Psychology in Team Sports</h4>
+                    <p>Barça Innovation Hub</p>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Logo_of_the_Technical_University_of_Munich.svg" width="60" height="30" style="vertical-align: middle;"></div>
+                    <h4>Bachelor of Science in Informatics: Games Engineering</h4>
+                    <p>TUM</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Let's Connect</h2>            
+            <div class="social-links">
+                <a href="https://www.instagram.com/hellali.imen/" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/imene-hellali/" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/yourphonenumber" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:hellali_imene@yahoo.fr" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://discord.com/users/pipiggly#3057" class="social-icon" title="Email"><i class="fa-brands fa-discord"></i></a>
+            </div>
+
+            <a href="documents/CV-Imene-Hellali.pdf" class="cv-download"><i class="fas fa-file-pdf"></i> Download My CV</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Imène Hellali - All Rights Reserved</p>
+        <p style="margin-top: 0.5rem; opacity: 0.9;">Creating at the intersection of art, science, and technology</p>
+    </footer>
+</body>
+</html>

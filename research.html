@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/solid/straight.css">
+    <title>Research - Imène Hellali</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquoise: #40E0D0;
+            --pink: #FFB6D9;
+            --light-blue: #A8D8EA;
+            --light-purple: #D4A5FF;
+            --beige: #F5E6D3;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #F5E6D3 0%, #FFE5EC 50%, #E0F4FF 100%);
+            background-attachment: fixed;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--turquoise);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--turquoise), var(--pink));
+            background-size: 200% 100%;
+            animation: gradientSlide 2s linear infinite;
+        }
+
+        .page-header {
+            margin-top: 100px;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            color: #4a5568;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .research-container {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .research-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--light-blue), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .research-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            border-left: 6px solid;
+            border-image: linear-gradient(180deg, var(--turquoise), var(--pink)) 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.05), rgba(255, 182, 217, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-card:hover::before {
+            opacity: 1;
+        }
+
+        .research-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-description {
+            color: #4a5568;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tag {
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, var(--light-blue), var(--light-purple));
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .pdf-links {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pdf-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--light-blue));
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .dynamic-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .dynamic-panel::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--turquoise), var(--light-purple), var(--light-blue));
+            border-radius: 25px;
+            z-index: -1;
+            background-size: 300% 300%;
+            animation: gradientMove 4s ease infinite;
+        }
+
+        .dynamic-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .content-block {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .content-block:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .content-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-text {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.8), rgba(255, 182, 217, 0.8));
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 5rem;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes gradientSlide {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2.5rem; }
+            .research-grid { grid-template-columns: 1fr; }
+            nav ul { gap: 1rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo-section" style="text-decoration: none;">
+                <div class="logo-placeholder">IH</div>
+                <div class="logo-name">Imène Hellali</div>
+            </a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="apps.html">Apps & Websites</a></li>
+                <li><a href="research.html" class="active">Research</a></li>
+                <li><a href="hobbies.html">Hobbies</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1><i class="fi fi-ss-man-scientist"></i> Research & Explorations</h1>
+        <p>Pushing boundaries across disciplines - where science meets innovation</p>
+    </div>
+
+    <div class="research-container">
+        <div class="research-section">
+            <h2 class="section-title">Academic Research</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-icon">🧠</div>
+                    <h3 class="research-title">Neuroscience & Addiction</h3>
+                    <p class="research-description">
+                        Investigating neural mechanisms underlying addiction disorders through advanced VR and ML techniques. Exploring implicit measurement methodologies for more accurate patient profiling.
+                    </p>
+                    <div class="research-tags">
+                        <span class="tag">Neuroscience</span>
+                        <span class="tag">ML</span>
+                        <span class="tag">VR</span>
+                    </div>
+                    <div class="pdf-links">
+                        <a href="pdfs/research-paper.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i> Research Paper</a>
+                        <a href="pdfs/data-analysis.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i> Data Analysis</a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-icon">⚽</div>
+                    <h3 class="research-title">Sports Psychology & Performance</h3>
+                    <p class="research-description">
+                        Examining the psychological and neurological factors affecting athletic performance. Developing evidence-based interventions for mental training and peak performance optimization.
+                    </p>
+                    <div class="research-tags">
+                        <span class="tag">Psychology</span>
+                        <span class="tag">Athletics</span>
+                        <span class="tag">Performance</span>
+                    </div>
+                    <div class="pdf-links">
+                        <a href="pdfs/study-results.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i> Study Results</a>
+                        <a href="pdfs/findings.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i>Findings</a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-icon">✨</div>
+                    <h3 class="research-title">AI in Healthcare</h3>
+                    <p class="research-description">
+                        Applying Large Language Models and AI to healthcare challenges. Developing intelligent systems that can assist in diagnosis, treatment planning, and patient care personalization.
+                    </p>
+                    <div class="research-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Healthcare</span>
+                        <span class="tag">LLM</span>
+                    </div>
+                    <div class="pdf-links">
+                        <a href="pdfs/whitepaper.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i> Whitepaper</a>
+                        <a href="pdfs/methodology.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i> Methodology</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dynamic-panel">
+            <h2 class="section-title">Interdisciplinary Explorations</h2>
+            <div class="dynamic-content">
+                <div class="content-block">
+                    <div class="content-icon">♾️</div>
+                    <h3 class="content-title">Behavioral Psychology</h3>
+                    <p class="content-text">Understanding cues affecting & influencing behavior & cognition</p>
+                </div>
+                <div class="content-block">
+                    <div class="content-icon">🍃</div>
+                    <h3 class="content-title">Digital Health</h3>
+                    <p class="content-text">Mobile apps surrounding mental health.</p>
+                </div>
+                <div class="content-block">
+                    <div class="content-icon">🖌️</div>
+                    <h3 class="content-title">Human-Computer Interaction</h3>
+                    <p class="content-text">Designing intuitive interfaces for data sharing & visualization</p>
+                </div>
+                <!--
+                <div class="content-block">
+                    <div class="content-icon">🧬</div>
+                    <h3 class="content-title">Behavioral Genetics</h3>
+                    <p class="content-text">Exploring genetic factors in personality and behavior</p>
+                </div>
+                -->
+            </div>
+        </div>
+
+        <div class="research-section">
+            <h2 class="section-title">Collaborative Projects</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-icon">🫱🏼‍🫲🏽</div>
+                    <h3 class="research-title">Cross-Disciplinary Innovation</h3>
+                    <p class="research-description">
+                        Collaborating with experts from psychology, computer science, and medicine to create holistic solutions. Bridging the gap between traditional research and modern technology.
+                    </p>
+                    <div class="research-tags">
+                        <span class="tag">Collaboration</span>
+                        <span class="tag">Innovation</span>
+                    </div>
+                    <div class="pdf-links">
+                        <a href="pdfs/project-overview.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i>Project Overview</a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-icon">🌐</div>
+                    <h3 class="research-title">Global Health Initiatives</h3>
+                    <p class="research-description">
+                        Contributing to international research efforts addressing mental health accessibility and addiction treatment on a global scale through technology-driven solutions.
+                    </p>
+                    <div class="research-tags">
+                        <span class="tag">Global Health</span>
+                        <span class="tag">Accessibility</span>
+                    </div>
+                    <div class="pdf-links">
+                        <a href="pdfs/report.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i>Report</a>
+                        <a href="pdfs/impact-study.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i> Impact Study</a>
+                    </div>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-icon">📃</div>
+                    <h3 class="research-title">Publications & Open Sourcing</h3>
+                    <p class="research-description">
+                        Sharing findings and codes through publications. Contributing to the scientific and developer community.
+                    </p>
+                    <div class="research-tags">
+                        <span class="tag">Publications</span>
+                        <span class="tag">Conferences</span>
+                        <span class="tag">Podcasts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Imène Hellali - All Rights Reserved</p>
+        <p style="margin-top: 0.5rem; opacity: 0.9;">Exploring the frontiers of knowledge</p>
+    </footer>
+</body>
+</html>
