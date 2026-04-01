@@ -157,6 +157,16 @@
             color: var(--turquoise);
         }
 
+        .wip-badge {
+            position: absolute;
+            top: -9px;
+            right: -14px;
+            width: 13px;
+            height: 13px;
+            pointer-events: none;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
         nav a.active::after {
             content: '';
             position: absolute;
@@ -554,6 +564,204 @@
         }
     }
         }
+        /* Lightbox */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-bg {
+            position: absolute;
+            inset: 0;
+            background: rgba(60, 60, 60, 0.88);
+            cursor: pointer;
+        }
+
+        .lightbox-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-img-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 82vw;
+            max-height: 72vh;
+            overflow: hidden;
+        }
+
+        #lightbox-img {
+            max-width: 82vw;
+            max-height: 72vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 12px 50px rgba(0,0,0,0.6);
+            transition: transform 0.2s;
+            transform-origin: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -44px;
+            right: -4px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            font-size: 1.2rem;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            z-index: 2;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .lightbox-nav img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .lightbox-prev {
+            left: 2vw;
+        }
+
+        .lightbox-next {
+            right: 2vw;
+        }
+
+        .lightbox-prev img {
+            transform: scaleX(-1);
+        }
+
+        .lightbox-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            color: white;
+        }
+
+        .lightbox-ctrl-btn {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lightbox-ctrl-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        .lightbox-ctrl-btn img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        #lightbox-zoom {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.8);
+            min-width: 38px;
+            text-align: center;
+        }
+
+        #lightbox-name {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
+            margin: 0 0.5rem;
+        }
+
+        #lightbox-counter {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        @media (max-width: 600px) {
+            #lightbox-img {
+                max-width: 92vw;
+                max-height: 60vh;
+            }
+
+            .lightbox-img-wrap {
+                max-width: 92vw;
+                max-height: 60vh;
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-nav img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .lightbox-prev { left: 1vw; }
+            .lightbox-next { right: 1vw; }
+
+            .lightbox-controls {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0 0.5rem;
+            }
+
+            .lightbox-ctrl-btn {
+                width: 34px;
+                height: 34px;
+            }
+
+            #lightbox-name {
+                font-size: 0.8rem;
+                text-align: center;
+                width: 100%;
+                order: -1;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 
@@ -571,9 +779,9 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="games.html">Games</a></li>
-                <li><a href="apps.html">Apps & Websites</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="hobbies.html" class="active">Hobbies</a></li>
+                <li><a href="apps.html">Apps & Websites<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
+                <li><a href="research.html">Research<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
+                <li><a href="hobbies.html" class="active">Hobbies<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
             </ul>
         </div>
     </nav>
@@ -707,11 +915,9 @@
                 <div class="hobby-panel">
                     <div class="art-type-badges">
                         <div class="art-type-badge"><i class="fi fi-ss-customize-computer"></i> Digital Art</div>
-                        <div class="art-type-badge"><i class="fi fi-ss-music-alt"></i> Sounds</div>
                     </div>
                     <div class="image-container">
-                        <img src="Arts/Digital/artwork1.jpg" alt="Digital Art"
-                            onerror="this.parentElement.innerHTML='<div class=\'image-placeholder\'>🎶</div>'">
+                        <img src="Arts/poster.png" alt="Digital Art">
                     </div>
                     <div class="hobby-content">
                         <h3 class="hobby-title">Digital Medias</h3>
@@ -720,29 +926,47 @@
                             exploring color, emotion, narrative and ambiance.
                         </p>
                         <div class="asset-gallery">
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character1.fbx')">
-                                <img src="Arts/3DModels/thumbnails/char1-thumb.jpg" alt="Character 1"
-                                    onerror="this.parentElement.innerHTML='🎵'">
+                            <div class="asset-thumbnail" onclick="openLightbox(0)">
+                                <img src="Arts/A%20Juicy%20Story%200.png" alt="A Juicy Story 0">
                             </div>
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character2.obj')">
-                                <img src="Arts/3DModels/thumbnails/char2-thumb.jpg" alt="Character 2"
-                                    onerror="this.parentElement.innerHTML='🎵'">
+                            <div class="asset-thumbnail" onclick="openLightbox(1)">
+                                <img src="Arts/A%20Juicy%20Story%201.png" alt="A Juicy Story 1">
                             </div>
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character1.fbx')">
-                                <img src="Arts/3DModels/thumbnails/char1-thumb.jpg" alt="Character 1"
-                                    onerror="this.parentElement.innerHTML='🎵'">
+                            <div class="asset-thumbnail" onclick="openLightbox(2)">
+                                <img src="Arts/DrawChallange_1.png" alt="Draw Challenge 1">
                             </div>
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character2.obj')">
-                                <img src="Arts/3DModels/thumbnails/char2-thumb.jpg" alt="Character 2"
-                                    onerror="this.parentElement.innerHTML='🎨'">
+                            <div class="asset-thumbnail" onclick="openLightbox(3)">
+                                <img src="Arts/DrawChallange_2.png" alt="Draw Challenge 2">
                             </div>
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character1.fbx')">
-                                <img src="Arts/3DModels/thumbnails/char1-thumb.jpg" alt="Character 1"
-                                    onerror="this.parentElement.innerHTML='🎨'">
+                            <div class="asset-thumbnail" onclick="openLightbox(4)">
+                                <img src="Arts/DrawChallange_3.png" alt="Draw Challenge 3">
                             </div>
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character2.obj')">
-                                <img src="Arts/3DModels/thumbnails/char2-thumb.jpg" alt="Character 2"
-                                    onerror="this.parentElement.innerHTML='🎨'">
+                            <div class="asset-thumbnail" onclick="openLightbox(5)">
+                                <img src="Arts/DrawChallange_4.png" alt="Draw Challenge 4">
+                            </div>
+                            <div class="asset-thumbnail" onclick="openLightbox(6)">
+                                <img src="Arts/Hot_bath.png" alt="Hot Bath">
+                            </div>
+                            <div class="asset-thumbnail" onclick="openLightbox(7)">
+                                <img src="Arts/Logo.png" alt="Logo">
+                            </div>
+                            <div class="asset-thumbnail" onclick="openLightbox(8)">
+                                <img src="Arts/ghhhhh.png" alt="Sketch">
+                            </div>
+                            <div class="asset-thumbnail" onclick="openLightbox(9)">
+                                <img src="Arts/hentai_wallpapers_0.png" alt="Wallpaper">
+                            </div>
+                            <div class="asset-thumbnail" onclick="openLightbox(10)">
+                                <img src="Arts/i%20love%20you.png" alt="I Love You">
+                            </div>
+                            <div class="asset-thumbnail" onclick="openLightbox(11)">
+                                <img src="Arts/imma.png" alt="Imma">
+                            </div>
+                            <div class="asset-thumbnail" onclick="openLightbox(12)">
+                                <img src="Arts/immaz.png" alt="Immaz">
+                            </div>
+                            <div class="asset-thumbnail" onclick="openLightbox(13)">
+                                <img src="Arts/poster.png" alt="Poster">
                             </div>
                         </div>
                     </div>
@@ -779,6 +1003,39 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox-overlay" style="display:none;">
+        <div class="lightbox-bg" onclick="closeLightbox()"></div>
+        <button class="lightbox-nav lightbox-prev" onclick="prevImage()">
+            <img src="logos/arrow.png" alt="Previous">
+        </button>
+        <div class="lightbox-container">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <div class="lightbox-img-wrap">
+                <img id="lightbox-img" src="" alt="">
+            </div>
+            <div class="lightbox-controls">
+                <button class="lightbox-ctrl-btn" onclick="zoomOut()">
+                    <img src="logos/minus.png" alt="Zoom out">
+                </button>
+                <span id="lightbox-zoom">100%</span>
+                <button class="lightbox-ctrl-btn" onclick="zoomIn()">
+                    <img src="logos/plus.png" alt="Zoom in">
+                </button>
+                <span id="lightbox-name"></span>
+                <span id="lightbox-counter"></span>
+                <a id="lightbox-download" href="#" download>
+                    <button class="lightbox-ctrl-btn">
+                        <img src="logos/download.png" alt="Download">
+                    </button>
+                </a>
+            </div>
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="nextImage()">
+            <img src="logos/arrow.png" alt="Next">
+        </button>
     </div>
 
     <footer>
@@ -863,6 +1120,145 @@
             init3DViewer('model-viewer-1');
             init3DViewer('model-viewer-2');
         });
+
+        // Lightbox
+        const artImages = [
+            { src: 'Arts/A%20Juicy%20Story%200.png',    name: 'A Juicy Story 0' },
+            { src: 'Arts/A%20Juicy%20Story%201.png',    name: 'A Juicy Story 1' },
+            { src: 'Arts/DrawChallange_1.png',           name: 'Draw Challenge 1' },
+            { src: 'Arts/DrawChallange_2.png',           name: 'Draw Challenge 2' },
+            { src: 'Arts/DrawChallange_3.png',           name: 'Draw Challenge 3' },
+            { src: 'Arts/DrawChallange_4.png',           name: 'Draw Challenge 4' },
+            { src: 'Arts/Hot_bath.png',                  name: 'Hot Bath' },
+            { src: 'Arts/Logo.png',                      name: 'Logo' },
+            { src: 'Arts/ghhhhh.png',                    name: 'Sketch' },
+            { src: 'Arts/hentai_wallpapers_0.png',       name: 'Wallpaper' },
+            { src: 'Arts/i%20love%20you.png',            name: 'I Love You' },
+            { src: 'Arts/imma.png',                      name: 'Imma' },
+            { src: 'Arts/immaz.png',                     name: 'Immaz' },
+            { src: 'Arts/poster.png',                    name: 'Poster' }
+        ];
+
+        let currentIndex = 0;
+        let currentZoom = 1;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            currentZoom = 1;
+            updateLightbox();
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const art = artImages[currentIndex];
+            const img = document.getElementById('lightbox-img');
+            img.src = art.src;
+            img.alt = art.name;
+            img.style.transform = 'scale(1)';
+            currentZoom = 1;
+            document.getElementById('lightbox-zoom').textContent = '100%';
+            document.getElementById('lightbox-name').textContent = art.name;
+            document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + artImages.length;
+            const dl = document.getElementById('lightbox-download');
+            dl.href = art.src;
+            dl.download = art.name + '.png';
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + artImages.length) % artImages.length;
+            updateLightbox();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % artImages.length;
+            updateLightbox();
+        }
+
+        function zoomIn() {
+            currentZoom = Math.min(currentZoom + 0.25, 4);
+            const img = document.getElementById('lightbox-img');
+            img.style.transform = 'scale(' + currentZoom + ')';
+            document.getElementById('lightbox-zoom').textContent = Math.round(currentZoom * 100) + '%';
+        }
+
+        function zoomOut() {
+            currentZoom = Math.max(currentZoom - 0.25, 0.25);
+            const img = document.getElementById('lightbox-img');
+            img.style.transform = 'scale(' + currentZoom + ')';
+            document.getElementById('lightbox-zoom').textContent = Math.round(currentZoom * 100) + '%';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').style.display === 'none') return;
+            if (e.key === 'ArrowLeft')       prevImage();
+            else if (e.key === 'ArrowRight') nextImage();
+            else if (e.key === 'Escape')     closeLightbox();
+            else if (e.key === '+' || e.key === '=') zoomIn();
+            else if (e.key === '-')          zoomOut();
+        });
+
+        // Trackpad pinch zoom (wheel + ctrlKey)
+        document.getElementById('lightbox').addEventListener('wheel', function(e) {
+            e.preventDefault();
+            if (!e.ctrlKey) return;
+            const delta = e.deltaY < 0 ? 0.1 : -0.1;
+            currentZoom = Math.min(Math.max(currentZoom + delta, 0.25), 4);
+            const img = document.getElementById('lightbox-img');
+            img.style.transform = 'scale(' + currentZoom + ')';
+            document.getElementById('lightbox-zoom').textContent = Math.round(currentZoom * 100) + '%';
+        }, { passive: false });
+
+        // Touch: pinch-to-zoom + swipe prev/next
+        let _touchStartDist = 0;
+        let _touchStartZoom = 1;
+        let _touchStartX = 0;
+        let _isPinching = false;
+
+        document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+            if (e.touches.length === 2) {
+                _isPinching = true;
+                _touchStartDist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                _touchStartZoom = currentZoom;
+            } else if (e.touches.length === 1) {
+                _isPinching = false;
+                _touchStartX = e.touches[0].clientX;
+            }
+        }, { passive: true });
+
+        document.getElementById('lightbox').addEventListener('touchmove', function(e) {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                _isPinching = true;
+                const dist = Math.hypot(
+                    e.touches[0].clientX - e.touches[1].clientX,
+                    e.touches[0].clientY - e.touches[1].clientY
+                );
+                currentZoom = Math.min(Math.max(_touchStartZoom * (dist / _touchStartDist), 0.25), 4);
+                const img = document.getElementById('lightbox-img');
+                img.style.transform = 'scale(' + currentZoom + ')';
+                document.getElementById('lightbox-zoom').textContent = Math.round(currentZoom * 100) + '%';
+            }
+        }, { passive: false });
+
+        document.getElementById('lightbox').addEventListener('touchend', function(e) {
+            if (_isPinching) { _isPinching = false; return; }
+            if (e.changedTouches.length === 1) {
+                const dx = e.changedTouches[0].clientX - _touchStartX;
+                if (Math.abs(dx) > 60) {
+                    if (dx < 0) nextImage();
+                    else prevImage();
+                }
+            }
+        }, { passive: true });
     </script>
 
 </body>

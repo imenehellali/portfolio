@@ -146,6 +146,16 @@
             color: var(--turquoise);
         }
 
+        .wip-badge {
+            position: absolute;
+            top: -9px;
+            right: -14px;
+            width: 13px;
+            height: 13px;
+            pointer-events: none;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
         nav a.active::after {
             content: '';
             position: absolute;
@@ -400,6 +410,131 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* Doc Viewer */
+        .docviewer-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .docviewer-bg {
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 40, 40, 0.9);
+            cursor: pointer;
+        }
+
+        .docviewer-container {
+            position: relative;
+            z-index: 1;
+            width: 90vw;
+            height: 90vh;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .docviewer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            color: white;
+            flex-shrink: 0;
+            gap: 0.8rem;
+        }
+
+        .docviewer-title {
+            font-weight: 700;
+            font-size: 1rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+        }
+
+        .docviewer-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        .docviewer-dl-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 8px;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .docviewer-dl-btn:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        .docviewer-dl-btn img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        .docviewer-close {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 50%;
+            color: white;
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .docviewer-close:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .docviewer-iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+        }
+
+        @media (max-width: 600px) {
+            .docviewer-container {
+                width: 98vw;
+                height: 92vh;
+                border-radius: 10px;
+            }
+
+            .docviewer-title {
+                font-size: 0.82rem;
+            }
+
+            .docviewer-dl-btn span {
+                display: none;
+            }
+        }
+
         .links-section {
             display: flex;
             gap: 1rem;
@@ -588,9 +723,9 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="games.html">Games</a></li>
-                <li><a href="apps.html" class="active">Apps & Websites</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="hobbies.html">Hobbies</a></li>
+                <li><a href="apps.html" class="active">Apps & Websites<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
+                <li><a href="research.html">Research<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
+                <li><a href="hobbies.html">Hobbies<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
             </ul>
         </div>
     </nav>
@@ -633,17 +768,17 @@
                         <div class="pdf-item" style="--i: 1">
                             <div class="pdf-icon">📃</div>
                             <div class="pdf-name">User Guide</div>
-                            <a href="pdfs/user-guide.pdf" class="pdf-download">Download</a>
+                            <a href="pdfs/user-guide.pdf" class="pdf-download">Preview</a>
                         </div>
                         <div class="pdf-item" style="--i: 2">
                             <div class="pdf-icon">📃</div>
                             <div class="pdf-name">FAQ</div>
-                            <a href="pdfs/case-studies.pdf" class="pdf-download">Download</a>
+                            <a href="pdfs/case-studies.pdf" class="pdf-download">Preview</a>
                         </div>
                         <div class="pdf-item" style="--i: 2">
                             <div class="pdf-icon">🔊</div>
                             <div class="pdf-name">Feedbacks</div>
-                            <a href="pdfs/case-studies.pdf" class="pdf-download">Download</a>
+                            <a href="pdfs/case-studies.pdf" class="pdf-download">Preview</a>
                         </div>
                     </div>
                 </div>
@@ -672,6 +807,73 @@
         <p>Copyright &copy; 2019 Imène Hellali - All Rights Reserved</p>
         <p style="margin-top: 0.5rem; opacity: 0.9;">Building technology that transforms lives</p>
     </footer>
+
+    <!-- Doc Viewer Modal -->
+    <div id="docviewer" class="docviewer-overlay" style="display:none;">
+        <div class="docviewer-bg" onclick="closeDocViewer()"></div>
+        <div class="docviewer-container">
+            <div class="docviewer-header">
+                <span class="docviewer-title" id="docviewer-name"></span>
+                <div class="docviewer-actions">
+                    <a id="docviewer-dl" href="#" download class="docviewer-dl-btn">
+                        <img src="logos/download.png" alt=""><span>Download</span>
+                    </a>
+                    <button class="docviewer-close" onclick="closeDocViewer()">✕</button>
+                </div>
+            </div>
+            <iframe id="docviewer-iframe" class="docviewer-iframe" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Strip real hrefs so clicking a Preview link never triggers download/navigation
+        document.querySelectorAll('a.pdf-download').forEach(function(link) {
+            link.dataset.src = link.getAttribute('href');
+            link.href = 'javascript:void(0)';
+        });
+
+        function openDocViewer(src, name) {
+            var lower = src.toLowerCase();
+            var iframeSrc;
+            if (lower.endsWith('.pdf')) {
+                // PDFs: render natively in the browser iframe
+                iframeSrc = src;
+            } else {
+                // DOCX, PPTX, DOC, PPT, XLSX → Microsoft Office Online viewer
+                var abs = new URL(src, window.location.href).href;
+                iframeSrc = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(abs);
+            }
+            document.getElementById('docviewer-name').textContent = name;
+            document.getElementById('docviewer-iframe').src = iframeSrc;
+            var dl = document.getElementById('docviewer-dl');
+            dl.href = src;
+            dl.setAttribute('download', name);
+            document.getElementById('docviewer').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDocViewer() {
+            document.getElementById('docviewer').style.display = 'none';
+            document.getElementById('docviewer-iframe').src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('click', function(e) {
+            var link = e.target.closest('a.pdf-download');
+            if (!link) return;
+            e.preventDefault();
+            var src = link.dataset.src;
+            var item = link.closest('.pdf-item');
+            var name = item ? item.querySelector('.pdf-name').textContent.trim() : 'Document';
+            openDocViewer(src, name);
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('docviewer').style.display !== 'none') {
+                closeDocViewer();
+            }
+        });
+    </script>
 </body>
 
 </html>

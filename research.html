@@ -146,6 +146,16 @@
             color: var(--turquoise);
         }
 
+        .wip-badge {
+            position: absolute;
+            top: -9px;
+            right: -14px;
+            width: 13px;
+            height: 13px;
+            pointer-events: none;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
         nav a.active::after {
             content: '';
             position: absolute;
@@ -490,9 +500,9 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="games.html">Games</a></li>
-                <li><a href="apps.html">Apps & Websites</a></li>
-                <li><a href="research.html" class="active">Research</a></li>
-                <li><a href="hobbies.html">Hobbies</a></li>
+                <li><a href="apps.html">Apps & Websites<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
+                <li><a href="research.html" class="active">Research<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
+                <li><a href="hobbies.html">Hobbies<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
             </ul>
         </div>
     </nav>

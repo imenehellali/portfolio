@@ -156,6 +156,16 @@
             color: var(--turquoise);
         }
 
+        .wip-badge {
+            position: absolute;
+            top: -9px;
+            right: -14px;
+            width: 13px;
+            height: 13px;
+            pointer-events: none;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
         nav a.active::after {
             content: '';
             position: absolute;
@@ -605,6 +615,130 @@
         }
     }
         }
+        /* Doc Viewer */
+        .docviewer-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .docviewer-bg {
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 40, 40, 0.9);
+            cursor: pointer;
+        }
+
+        .docviewer-container {
+            position: relative;
+            z-index: 1;
+            width: 90vw;
+            height: 90vh;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .docviewer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--pink));
+            color: white;
+            flex-shrink: 0;
+            gap: 0.8rem;
+        }
+
+        .docviewer-title {
+            font-weight: 700;
+            font-size: 1rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+        }
+
+        .docviewer-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        .docviewer-dl-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 8px;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .docviewer-dl-btn:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        .docviewer-dl-btn img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        .docviewer-close {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 50%;
+            color: white;
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .docviewer-close:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .docviewer-iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+        }
+
+        @media (max-width: 600px) {
+            .docviewer-container {
+                width: 98vw;
+                height: 92vh;
+                border-radius: 10px;
+            }
+
+            .docviewer-title {
+                font-size: 0.82rem;
+            }
+
+            .docviewer-dl-btn span {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -622,9 +756,9 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="games.html" class="active">Games</a></li>
-                <li><a href="apps.html">Apps & Websites</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="hobbies.html">Hobbies</a></li>
+                <li><a href="apps.html">Apps & Websites<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
+                <li><a href="research.html">Research<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
+                <li><a href="hobbies.html">Hobbies<img src="logos/upcoming.png" class="wip-badge" alt=""></a></li>
             </ul>
         </div>
     </nav>
@@ -656,18 +790,8 @@
                     <div class="pdf-scroll">
                         <div class="pdf-item" style="--i: 1">
                             <div class="pdf-icon">📃</div>
-                            <div class="pdf-name">Thesis</div>
-                            <a href="documents/DesignDoc/design-doc.pdf" class="pdf-download">Download</a>
-                        </div>
-                        <div class="pdf-item" style="--i: 2">
-                            <div class="pdf-icon">🔬</div>
-                            <div class="pdf-name">Research</div>
-                            <a href="documents/Research/research.pdf" class="pdf-download">Download</a>
-                        </div>
-                        <div class="pdf-item" style="--i: 3">
-                            <div class="pdf-icon">⚙️</div>
-                            <div class="pdf-name">Tech Doc</div>
-                            <a href="documents/TechDoc/tech-doc.pdf" class="pdf-download">Download</a>
+                            <div class="pdf-name">Thesis (ML Depricated)</div>
+                            <a href="documents/Master_Thesis_Profiling_VR.pdf" class="pdf-download">Preview</a>
                         </div>
                     </div>
                 </div>
@@ -738,15 +862,10 @@
                 <div class="pdf-carousel">
                     <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Research Documentation</div>
                     <div class="pdf-scroll">
-                        <div class="pdf-item" style="--i: 1">
-                            <div class="pdf-icon">✍🏼</div>
-                            <div class="pdf-name">Base Research</div>
-                            <a href="documents/Research/poc-research.pdf" class="pdf-download">Download</a>
-                        </div>
                         <div class="pdf-item" style="--i: 2">
-                            <div class="pdf-icon">🔬</div>
+                            <div class="pdf-icon">✍🏼</div>
                             <div class="pdf-name">Research</div>
-                            <a href="documents/Research/methodology.pdf" class="pdf-download">Download</a>
+                            <a href="documents/Key_Elements_in_Video_Games.pdf" class="pdf-download">Preview</a>
                         </div>
                     </div>
                 </div>
@@ -762,7 +881,7 @@
         <!-- Game 3 -->
         <div class="game-panel">
             <div class="video-container">
-                <iframe src="to-Add" frameborder="0"
+                <iframe src="Videos/TrailerLightOfDaedalus.mp4" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             </div>
@@ -775,9 +894,19 @@
                     <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Documentation</div>
                     <div class="pdf-scroll">
                         <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📽️</div>
+                            <div class="pdf-name">Presentation</div>
+                            <a href="documents/LightOfDaedalusInterimDemo.pdf" class="pdf-download">Preview</a>
+                        </div>
+                        <div class="pdf-item" style="--i: 1">
                             <div class="pdf-icon">📃</div>
                             <div class="pdf-name">Design Doc</div>
-                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                            <a href="documents/GameProposal.pdf" class="pdf-download">Preview</a>
+                        </div>
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">🖼️</div>
+                            <div class="pdf-name">Poster</div>
+                            <a href="documents/poster.pdf" class="pdf-download">Preview</a>
                         </div>
                     </div>
                 </div>
@@ -809,7 +938,7 @@
                         <div class="pdf-item" style="--i: 1">
                             <div class="pdf-icon">📃</div>
                             <div class="pdf-name">Thesis</div>
-                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                            <a href="documents/B_Games_200514_hellali_imen.pdf" class="pdf-download">Preview</a>
                         </div>
                     </div>
                 </div>
@@ -838,7 +967,16 @@
                 <h2 class="game-title">Fat Owl</h2>
                 <p class="game-description">
                     An endless runner game, where the player controls the moving character with the Kinect. </p>
-
+                    <div class="pdf-carousel">
+                    <div class="pdf-carousel-title"><i class="fas fa-file-pdf"></i> Documentation</div>
+                    <div class="pdf-scroll">
+                        <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">Design Doc</div>
+                            <a href="documents/Style Sheet.pdf" class="pdf-download">Preview</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="links-section">
 
                 </div>
@@ -883,8 +1021,8 @@
                     <div class="pdf-scroll">
                         <div class="pdf-item" style="--i: 1">
                             <div class="pdf-icon">📃</div>
-                            <div class="pdf-name">Design Doc</div>
-                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                            <div class="pdf-name">Game Design</div>
+                            <a href="documents/izanami&izanagi.pdf" class="pdf-download">Preview</a>
                         </div>
                     </div>
                 </div>
@@ -913,7 +1051,7 @@
                         <div class="pdf-item" style="--i: 1">
                             <div class="pdf-icon">📃</div>
                             <div class="pdf-name">Design Doc</div>
-                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                            <a href="documents/DesignChoiceCrossLight.pdf" class="pdf-download">Preview</a>
                         </div>
                     </div>
                 </div>
@@ -925,7 +1063,7 @@
                 </div>
             </div>
         </div>
-        <!-- Game 9 -->
+<!-- Game 9 -->
         <div class="game-panel">
             <div class="video-container">
                 <iframe src="to-add" frameborder="0"
@@ -943,8 +1081,13 @@
                     <div class="pdf-scroll">
                         <div class="pdf-item" style="--i: 1">
                             <div class="pdf-icon">📃</div>
-                            <div class="pdf-name">Design Doc</div>
-                            <a href="documents/DesignDoc/game2-design.pdf" class="pdf-download">Download</a>
+                            <div class="pdf-name">Story</div>
+                            <a href="documents/Storywelten.pdf" class="pdf-download">Preview</a>
+                        </div>
+                         <div class="pdf-item" style="--i: 1">
+                            <div class="pdf-icon">📃</div>
+                            <div class="pdf-name">Game Design</div>
+                            <a href="documents/HallPillGame.pdf" class="pdf-download">Preview</a>
                         </div>
                     </div>
                 </div>
@@ -1012,6 +1155,73 @@
 
         // Initialize
         updateCarousel();
+    </script>
+
+    <!-- Doc Viewer Modal -->
+    <div id="docviewer" class="docviewer-overlay" style="display:none;">
+        <div class="docviewer-bg" onclick="closeDocViewer()"></div>
+        <div class="docviewer-container">
+            <div class="docviewer-header">
+                <span class="docviewer-title" id="docviewer-name"></span>
+                <div class="docviewer-actions">
+                    <a id="docviewer-dl" href="#" download class="docviewer-dl-btn">
+                        <img src="logos/download.png" alt=""><span>Download</span>
+                    </a>
+                    <button class="docviewer-close" onclick="closeDocViewer()">✕</button>
+                </div>
+            </div>
+            <iframe id="docviewer-iframe" class="docviewer-iframe" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Strip real hrefs so clicking a Preview link never triggers download/navigation
+        document.querySelectorAll('a.pdf-download').forEach(function(link) {
+            link.dataset.src = link.getAttribute('href');
+            link.href = 'javascript:void(0)';
+        });
+
+        function openDocViewer(src, name) {
+            var lower = src.toLowerCase();
+            var iframeSrc;
+            if (lower.endsWith('.pdf')) {
+                // PDFs: render natively in the browser iframe
+                iframeSrc = src;
+            } else {
+                // DOCX, PPTX, DOC, PPT, XLSX → Microsoft Office Online viewer
+                var abs = new URL(src, window.location.href).href;
+                iframeSrc = 'https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(abs);
+            }
+            document.getElementById('docviewer-name').textContent = name;
+            document.getElementById('docviewer-iframe').src = iframeSrc;
+            var dl = document.getElementById('docviewer-dl');
+            dl.href = src;
+            dl.setAttribute('download', name);
+            document.getElementById('docviewer').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDocViewer() {
+            document.getElementById('docviewer').style.display = 'none';
+            document.getElementById('docviewer-iframe').src = '';
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('click', function(e) {
+            var link = e.target.closest('a.pdf-download');
+            if (!link) return;
+            e.preventDefault();
+            var src = link.dataset.src;
+            var item = link.closest('.pdf-item');
+            var name = item ? item.querySelector('.pdf-name').textContent.trim() : 'Document';
+            openDocViewer(src, name);
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('docviewer').style.display !== 'none') {
+                closeDocViewer();
+            }
+        });
     </script>
 </body>
 
