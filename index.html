@@ -2432,10 +2432,15 @@
                         class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/imene-hellali/" class="social-icon" title="LinkedIn"><i
                         class="fab fa-linkedin-in"></i></a>
-                <a href="https://wa.me/yourphonenumber" class="social-icon" title="WhatsApp"><i
+                <a href="https://wa.me/4917681494193" class="social-icon" title="WhatsApp"><i
                         class="fab fa-whatsapp"></i></a>
-                <a href="mailto:hellali_imene@yahoo.fr" class="social-icon" title="Email"><i
+                <a href="mailto:hellali_imene@yahoo.fr" class="social-icon" title="Email" onclick="copyEmail(event)"><i
                         class="fas fa-envelope"></i></a>
+                <a href="https://www.tiktok.com/@hellali_imen" class="social-icon" title="TikTok" target="_blank" rel="noopener"><i
+                        class="fa-brands fa-tiktok"></i></a>
+                <a href="https://x.com/hellali_imene" class="social-icon" title="X" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:1em;height:1em;fill:currentColor;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://www.twitch.tv/pipiggly" class="social-icon" title="Twitch" target="_blank" rel="noopener"><i
+                        class="fa-brands fa-twitch"></i></a>
                 <a href="https://discord.com/users/pipiggly#3057" class="social-icon" title="Discord"><i
                         class="fa-brands fa-discord"></i></a>
             </div>
@@ -2444,6 +2449,22 @@
                 CV</a>
         </div>
     </section>
+
+    <div id="email-toast" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 22px;border-radius:8px;font-size:0.9rem;z-index:9999;pointer-events:none;">Email copied!</div>
+
+    <script>
+    function copyEmail(e) {
+        if (navigator.clipboard) {
+            e.preventDefault();
+            navigator.clipboard.writeText('hellali_imene@yahoo.fr').then(function() {
+                var t = document.getElementById('email-toast');
+                t.style.display = 'block';
+                setTimeout(function(){ t.style.display = 'none'; }, 2000);
+            });
+        }
+        // On mobile/no clipboard API: falls through to mailto: normally
+    }
+    </script>
 
     <footer>
         <p>Copyright &copy; 2019 Imène Hellali - All Rights Reserved</p>
