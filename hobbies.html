@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hobbies - Imène Hellali</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/fflate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FBXLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/solid/straight.css">
     <style>
@@ -564,6 +568,292 @@
         }
     }
         }
+        /* Mini 3D panel previews */
+        .mini-3d-wrap canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+        .mini-click-hint {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.55);
+            color: rgba(255,255,255,0.9);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        /* 3D Model Cards */
+        .model-item {
+            flex: 0 0 auto;
+            width: 160px;
+            padding: 1rem 0.8rem;
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, var(--turquoise), var(--pink)) border-box;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .model-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .model-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .model-card-preview {
+            width: 100%;
+            height: 110px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+            position: relative;
+            background: #1e1e2e;
+        }
+
+        .model-card-preview canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+        .model-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .model-preview-btn {
+            display: inline-block;
+            padding: 0.35rem 0.9rem;
+            background: linear-gradient(135deg, var(--turquoise), var(--light-blue));
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .model-preview-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 3D Viewer Modal */
+        .viewer3d-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9997;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .viewer3d-bg {
+            position: absolute;
+            inset: 0;
+            background: rgba(20, 20, 30, 0.92);
+        }
+
+        .viewer3d-container {
+            position: relative;
+            z-index: 1;
+            width: 90vw;
+            height: 90vh;
+            background: #1a1a2e;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+        }
+
+        .viewer3d-header {
+            display: flex;
+            align-items: center;
+            padding: 0 0.6rem 0 0;
+            height: 48px;
+            background: linear-gradient(135deg, var(--turquoise), var(--light-purple));
+            color: white;
+            flex-shrink: 0;
+            gap: 0.5rem;
+        }
+
+        .viewer3d-nav-btn {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .viewer3d-nav-btn:hover:not(:disabled) { background: rgba(255,255,255,0.28); }
+        .viewer3d-nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+        .viewer3d-nav-btn img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .viewer3d-title-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .viewer3d-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .viewer3d-counter {
+            font-size: 0.72rem;
+            opacity: 0.7;
+        }
+
+        .viewer3d-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .viewer3d-dl-btn {
+            background: rgba(255,255,255,0.18);
+            border: 1.5px solid rgba(255,255,255,0.35);
+            border-radius: 8px;
+            color: white;
+            padding: 0.25rem 0.65rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+            height: 30px;
+        }
+
+        .viewer3d-dl-btn:hover { background: rgba(255,255,255,0.3); }
+
+        .viewer3d-dl-btn img {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .viewer3d-close-btn {
+            background: rgba(255,255,255,0.18);
+            border: 1.5px solid rgba(255,255,255,0.35);
+            border-radius: 50%;
+            color: white;
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .viewer3d-close-btn:hover { background: rgba(255,255,255,0.35); }
+
+        #viewer3d-viewport {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #viewer3d-viewport canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+            touch-action: none;
+        }
+
+        .viewer3d-hint {
+            position: absolute;
+            bottom: 1.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.55);
+            color: rgba(255,255,255,0.85);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            pointer-events: none;
+            white-space: nowrap;
+            transition: opacity 1.5s;
+        }
+
+        .viewer3d-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255,255,255,0.75);
+            font-size: 1rem;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        @media (max-width: 600px) {
+            .viewer3d-container {
+                width: 98vw;
+                height: 92vh;
+                border-radius: 10px;
+            }
+
+            .viewer3d-hint {
+                font-size: 0.7rem;
+                bottom: 0.6rem;
+            }
+        }
+
         /* Lightbox */
         .lightbox-overlay {
             position: fixed;
@@ -852,54 +1142,55 @@
         <div class="category-section">
             <h2 class="category-title">3D Modeling & Assets</h2>
             <div class="hobbies-grid">
-                <!-- 3D Model Panel with Embedded Viewer -->
+                <!-- Assets Panel -->
                 <div class="hobby-panel">
                     <div class="art-type-badges">
                         <div class="art-type-badge"><i class="fi fi-ss-cube"></i> 3D Model</div>
                     </div>
-                    <div class="image-container">
-                        <div class="model-viewer" id="model-viewer-1"></div>
+                    <div class="image-container mini-3d-wrap" id="mini-wrap-assets"
+                         onclick="open3DViewer('assets',0)"
+                         style="cursor:pointer;">
+                        <div id="mini-assets" style="position:absolute;inset:0;"></div>
+                        <div class="mini-click-hint">Click to explore</div>
                     </div>
                     <div class="hobby-content">
                         <h3 class="hobby-title">Assets</h3>
                         <p class="hobby-description">
-                            Custom 3D assets created for game projects. Click and drag to rotate the model.
+                            Textured 3D architecture models built for game projects. Click the preview to explore interactively.
                         </p>
                         <div class="asset-gallery">
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character1.fbx')">
-                                <img src="Arts/3DModels/thumbnails/char1-thumb.jpg" alt="Character 1"
-                                    onerror="this.parentElement.innerHTML='🎭'">
+                            <div class="model-item" onclick="open3DViewer('assets',0)">
+                                <div class="model-card-preview" id="card-asset-0"></div>
+                                <div class="model-name">Altes Peter</div>
                             </div>
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character2.obj')">
-                                <img src="Arts/3DModels/thumbnails/char2-thumb.jpg" alt="Character 2"
-                                    onerror="this.parentElement.innerHTML='🏰'">
+                            <div class="model-item" onclick="open3DViewer('assets',1)">
+                                <div class="model-card-preview" id="card-asset-1"></div>
+                                <div class="model-name">Residenz Castle</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 3D Model Panel with Embedded Viewer -->
+                <!-- Humanoids Panel -->
                 <div class="hobby-panel">
                     <div class="art-type-badges">
-                        <div class="art-type-badge"><i class="fi fi-ss-cube"></i> 3D Model</div>
+                        <div class="art-type-badge"><i class="fi fi-ss-cube"></i> VRoid / DAZ</div>
                     </div>
-                    <div class="image-container">
-                        <div class="model-viewer" id="model-viewer-2"></div>
+                    <div class="image-container mini-3d-wrap" id="mini-wrap-humanoids"
+                         onclick="open3DViewer('humanoids',0)"
+                         style="cursor:pointer;">
+                        <div id="mini-humanoids" style="position:absolute;inset:0;"></div>
+                        <div class="mini-click-hint">Click to explore</div>
                     </div>
                     <div class="hobby-content">
                         <h3 class="hobby-title">Humanoids</h3>
                         <p class="hobby-description">
-                            Custom 3D Animated Humans using Mixamo and other Open Source created for game projects.
-                            Click and drag to rotate the model.
+                            VRoid avatars and DAZ humanoid models used in game projects. Click the preview to explore in 3D.
                         </p>
                         <div class="asset-gallery">
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character1.fbx')">
-                                <img src="Arts/3DModels/thumbnails/char1-thumb.jpg" alt="Character 1"
-                                    onerror="this.parentElement.innerHTML='🎭'">
-                            </div>
-                            <div class="asset-thumbnail" onclick="alert('Download: Arts/3DModels/character2.obj')">
-                                <img src="Arts/3DModels/thumbnails/char2-thumb.jpg" alt="Character 2"
-                                    onerror="this.parentElement.innerHTML='🏰'">
+                            <div class="model-item" onclick="open3DViewer('humanoids',0)">
+                                <div class="model-card-preview" id="card-humanoid-0"></div>
+                                <div class="model-name">Suzumi</div>
                             </div>
                         </div>
                     </div>
@@ -968,6 +1259,9 @@
                             <div class="asset-thumbnail" onclick="openLightbox(13)">
                                 <img src="Arts/poster.png" alt="Poster">
                             </div>
+                            <div class="asset-thumbnail" onclick="openLightbox(14)">
+                                <img src="Arts/AL.png" alt="AL">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1002,6 +1296,34 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- 3D Viewer Modal -->
+    <div id="viewer3d" class="viewer3d-overlay" style="display:none;">
+        <div class="viewer3d-bg" onclick="close3DViewer()"></div>
+        <div class="viewer3d-container">
+            <div class="viewer3d-header">
+                <button class="viewer3d-nav-btn" id="viewer3d-prev" onclick="viewer3dPrev()">
+                    <img src="logos/arrow.png" alt="Prev" style="transform:scaleX(-1);">
+                </button>
+                <div class="viewer3d-title-wrap">
+                    <span class="viewer3d-title" id="viewer3d-name"></span>
+                    <span class="viewer3d-counter" id="viewer3d-counter"></span>
+                </div>
+                <div class="viewer3d-actions">
+                    <a id="viewer3d-dl" href="#" download class="viewer3d-dl-btn">
+                        <img src="logos/download.png" alt=""><span>Download</span>
+                    </a>
+                    <button class="viewer3d-close-btn" onclick="close3DViewer()">✕</button>
+                </div>
+                <button class="viewer3d-nav-btn" id="viewer3d-next" onclick="viewer3dNext()">
+                    <img src="logos/arrow.png" alt="Next">
+                </button>
+            </div>
+            <div id="viewer3d-viewport"></div>
+            <div class="viewer3d-loading" id="viewer3d-loading">Loading model…</div>
+            <div class="viewer3d-hint" id="viewer3d-hint">🖱 Drag · Scroll to zoom · Right-drag to pan</div>
         </div>
     </div>
 
@@ -1044,84 +1366,227 @@
     </footer>
 
     <script>
-        function init3DViewer(containerId) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(
-                75,
-                container.clientWidth / container.clientHeight,
-                0.1,
-                1000
-            );
-
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setPixelRatio(window.devicePixelRatio || 1);
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            renderer.setClearColor(0x000000, 0);
-            container.appendChild(renderer.domElement);
-
-            const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-            const material = new THREE.MeshStandardMaterial({
-                color: 0x40E0D0,
-                metalness: 0.5,
-                roughness: 0.2
-            });
-            const mesh = new THREE.Mesh(geometry, material);
-            scene.add(mesh);
-
-            const light1 = new THREE.DirectionalLight(0xffffff, 1);
-            light1.position.set(5, 5, 5);
-            scene.add(light1);
-
-            const light2 = new THREE.AmbientLight(0x404040, 2);
-            scene.add(light2);
-
-            camera.position.z = 5;
-
-            function animate() {
-                requestAnimationFrame(animate);
-                mesh.rotation.x += 0.005;
-                mesh.rotation.y += 0.005;
-                renderer.render(scene, camera);
-            }
-            animate();
-
-            // Drag to rotate
-            let isDragging = false;
-            let prev = { x: 0, y: 0 };
-
-            container.addEventListener('mousedown', () => (isDragging = true));
-            window.addEventListener('mouseup', () => (isDragging = false));
-            container.addEventListener('mousemove', (e) => {
-                if (isDragging) {
-                    const dx = e.offsetX - prev.x;
-                    const dy = e.offsetY - prev.y;
-                    mesh.rotation.y += dx * 0.01;
-                    mesh.rotation.x += dy * 0.01;
+        // ── Shared model loader helper ─────────────────────────────────────────
+        function _loadModel(modelSrc, texturePath, scene, onLoaded, onError) {
+            var ext = modelSrc.split('.').pop().toLowerCase();
+            if (ext === 'fbx') {
+                var manager = new THREE.LoadingManager();
+                if (texturePath) {
+                    manager.setURLModifier(function(url) {
+                        return texturePath + url.split(/[\\/]/).pop();
+                    });
                 }
-                prev = { x: e.offsetX, y: e.offsetY };
-            });
-
-            // Resize handling: keep canvas sized to its container
-            const ro = new ResizeObserver(() => {
-                const w = container.clientWidth || 1;
-                const h = container.clientHeight || 1;
-                renderer.setSize(w, h);
-                camera.aspect = w / h;
-                camera.updateProjectionMatrix();
-            });
-            ro.observe(container);
+                new THREE.FBXLoader(manager).load(modelSrc, onLoaded, null, onError);
+            } else {
+                new THREE.GLTFLoader().load(modelSrc, function(gltf) { onLoaded(gltf.scene); }, null, onError);
+            }
         }
 
-        // Initialize BOTH viewers
-        window.addEventListener('load', () => {
-            init3DViewer('model-viewer-1');
-            init3DViewer('model-viewer-2');
+        function _addLights(scene) {
+            scene.add(new THREE.AmbientLight(0xffffff, 0.75));
+            var d1 = new THREE.DirectionalLight(0xffffff, 0.9);
+            d1.position.set(200, 300, 200);
+            scene.add(d1);
+            var d2 = new THREE.DirectionalLight(0x8888ff, 0.3);
+            d2.position.set(-200, 100, -200);
+            scene.add(d2);
+        }
+
+        function _fitObject(object, targetSize) {
+            var box = new THREE.Box3().setFromObject(object);
+            var center = box.getCenter(new THREE.Vector3());
+            var size = box.getSize(new THREE.Vector3());
+            var maxDim = Math.max(size.x, size.y, size.z) || 1;
+            var scale = targetSize / maxDim;
+            object.scale.setScalar(scale);
+            object.position.sub(center.clone().multiplyScalar(scale));
+            return scale;
+        }
+
+        // ── Mini panel viewers (auto-rotating, click to open popup) ────────────
+        function initMiniViewer(divId, modelSrc, texturePath) {
+            var div = document.getElementById(divId);
+            var w = div.clientWidth, h = div.clientHeight;
+            if (!w || !h) { setTimeout(function() { initMiniViewer(divId, modelSrc, texturePath); }, 80); return; }
+
+            var scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1e1e2e);
+            _addLights(scene);
+
+            var camera = new THREE.PerspectiveCamera(45, w / h, 0.01, 100000);
+            var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(w, h);
+            div.appendChild(renderer.domElement);
+
+            var group = new THREE.Group();
+            scene.add(group);
+
+            _loadModel(modelSrc, texturePath, scene, function(object) {
+                var ts = 200;
+                _fitObject(object, ts);
+                group.add(object);
+                camera.position.set(0, ts * 0.35, ts * 1.5);
+                camera.lookAt(0, 0, 0);
+            }, null);
+
+            var miniAnimId;
+            (function loop() {
+                miniAnimId = requestAnimationFrame(loop);
+                group.rotation.y += 0.006;
+                renderer.render(scene, camera);
+            })();
+
+            new ResizeObserver(function() {
+                var ww = div.clientWidth, hh = div.clientHeight;
+                if (!ww || !hh) return;
+                renderer.setSize(ww, hh);
+                camera.aspect = ww / hh;
+                camera.updateProjectionMatrix();
+            }).observe(div);
+        }
+
+        // ── Model catalogue (add future models here) ───────────────────────────
+        var _modelGroups = {
+            assets: [
+                { src: 'Arts/3DS/AlterPeterModel/AltesPeter.fbx',          name: 'Altes Peter',      tex: 'Arts/3DS/AlterPeterModel/AlterPeterUVMAps/' },
+                { src: 'Arts/3DS/ResidenzCastleModel/ResidenzCastle.fbx',   name: 'Residenz Castle',  tex: 'Arts/3DS/ResidenzCastleModel/ResidenzUVMaps/' }
+            ],
+            humanoids: [
+                { src: 'Arts/3DS/VRoid.vrm', name: 'Suzumi', tex: null }
+            ]
+        };
+        var _currentGroupId = null;
+        var _currentModelIdx = 0;
+
+        // ── Fullscreen popup viewer ────────────────────────────────────────────
+        var _3dScene, _3dCamera, _3dRenderer, _3dControls, _3dAnimId;
+
+        function open3DViewer(groupId, index) {
+            _currentGroupId = groupId;
+            _currentModelIdx = index;
+            document.getElementById('viewer3d').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            document.getElementById('viewer3d-hint').style.opacity = '1';
+            setTimeout(function() { document.getElementById('viewer3d-hint').style.opacity = '0'; }, 4000);
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    _initPopupRenderer();
+                    _loadPopupModel();
+                });
+            });
+        }
+
+        function _initPopupRenderer() {
+            if (_3dRenderer) return; // already initialised this session
+            var vp = document.getElementById('viewer3d-viewport');
+            var w = vp.clientWidth, h = vp.clientHeight;
+
+            _3dScene = new THREE.Scene();
+            _3dScene.background = new THREE.Color(0x1a1a2e);
+            _addLights(_3dScene);
+
+            _3dCamera = new THREE.PerspectiveCamera(45, w / h, 0.01, 100000);
+
+            _3dRenderer = new THREE.WebGLRenderer({ antialias: true });
+            _3dRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            _3dRenderer.setSize(w, h);
+            _3dRenderer.shadowMap.enabled = true;
+            vp.appendChild(_3dRenderer.domElement);
+
+            _3dControls = new THREE.OrbitControls(_3dCamera, _3dRenderer.domElement);
+            _3dControls.enableDamping = true;
+            _3dControls.dampingFactor = 0.08;
+            _3dControls.screenSpacePanning = true;
+
+            (function loop() {
+                _3dAnimId = requestAnimationFrame(loop);
+                _3dControls.update();
+                _3dRenderer.render(_3dScene, _3dCamera);
+            })();
+
+            new ResizeObserver(function() {
+                if (!_3dRenderer) return;
+                var ww = vp.clientWidth, hh = vp.clientHeight;
+                _3dRenderer.setSize(ww, hh);
+                _3dCamera.aspect = ww / hh;
+                _3dCamera.updateProjectionMatrix();
+            }).observe(vp);
+        }
+
+        function _loadPopupModel() {
+            var m = _modelGroups[_currentGroupId][_currentModelIdx];
+            var group = _modelGroups[_currentGroupId];
+
+            // Update header UI
+            document.getElementById('viewer3d-name').textContent = m.name;
+            document.getElementById('viewer3d-counter').textContent = (_currentModelIdx + 1) + ' / ' + group.length;
+            document.getElementById('viewer3d-prev').disabled = _currentModelIdx === 0;
+            document.getElementById('viewer3d-next').disabled = _currentModelIdx === group.length - 1;
+            var dl = document.getElementById('viewer3d-dl');
+            dl.href = m.src;
+            dl.setAttribute('download', m.name);
+
+            // Clear previous model objects (keep lights)
+            if (_3dScene) {
+                var toRemove = [];
+                _3dScene.children.forEach(function(c) { if (!(c instanceof THREE.Light)) toRemove.push(c); });
+                toRemove.forEach(function(c) { _3dScene.remove(c); });
+            }
+
+            var loadEl = document.getElementById('viewer3d-loading');
+            loadEl.textContent = 'Loading model…';
+            loadEl.style.display = 'block';
+
+            _loadModel(m.src, m.tex, _3dScene, function(object) {
+                var ts = 300;
+                _fitObject(object, ts);
+                _3dScene.add(object);
+                _3dCamera.position.set(0, ts * 0.4, ts * 1.4);
+                _3dControls.target.set(0, 0, 0);
+                _3dControls.update();
+                loadEl.style.display = 'none';
+            }, function() {
+                loadEl.textContent = 'Could not load model.';
+            });
+        }
+
+        function viewer3dPrev() {
+            if (_currentModelIdx > 0) { _currentModelIdx--; _loadPopupModel(); }
+        }
+
+        function viewer3dNext() {
+            if (_currentModelIdx < _modelGroups[_currentGroupId].length - 1) { _currentModelIdx++; _loadPopupModel(); }
+        }
+
+        function close3DViewer() {
+            document.getElementById('viewer3d').style.display = 'none';
+            document.body.style.overflow = '';
+            if (_3dAnimId) { cancelAnimationFrame(_3dAnimId); _3dAnimId = null; }
+            if (_3dRenderer) { _3dRenderer.dispose(); _3dRenderer = null; }
+            if (_3dControls) { _3dControls.dispose(); _3dControls = null; }
+            _3dScene = null;
+            var vp = document.getElementById('viewer3d-viewport');
+            while (vp.firstChild) vp.removeChild(vp.firstChild);
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('viewer3d').style.display === 'none') return;
+            if (e.key === 'Escape') close3DViewer();
+            else if (e.key === 'ArrowLeft') viewer3dPrev();
+            else if (e.key === 'ArrowRight') viewer3dNext();
         });
 
-        // Lightbox
+        // Init mini viewers on page load
+        window.addEventListener('load', function() {
+            initMiniViewer('mini-assets',     'Arts/3DS/AlterPeterModel/AltesPeter.fbx',        'Arts/3DS/AlterPeterModel/AlterPeterUVMAps/');
+            initMiniViewer('mini-humanoids',  'Arts/3DS/VRoid.vrm',                             null);
+            initMiniViewer('card-asset-0',    'Arts/3DS/AlterPeterModel/AltesPeter.fbx',        'Arts/3DS/AlterPeterModel/AlterPeterUVMAps/');
+            initMiniViewer('card-asset-1',    'Arts/3DS/ResidenzCastleModel/ResidenzCastle.fbx','Arts/3DS/ResidenzCastleModel/ResidenzUVMaps/');
+            initMiniViewer('card-humanoid-0', 'Arts/3DS/VRoid.vrm',                             null);
+        });
+
+        // ── Lightbox ───────────────────────────────────────────────────────────
         const artImages = [
             { src: 'Arts/A%20Juicy%20Story%200.png',    name: 'A Juicy Story 0' },
             { src: 'Arts/A%20Juicy%20Story%201.png',    name: 'A Juicy Story 1' },
@@ -1136,7 +1601,8 @@
             { src: 'Arts/i%20love%20you.png',            name: 'I Love You' },
             { src: 'Arts/imma.png',                      name: 'Imma' },
             { src: 'Arts/immaz.png',                     name: 'Immaz' },
-            { src: 'Arts/poster.png',                    name: 'Poster' }
+            { src: 'Arts/poster.png',                    name: 'Poster' },
+            { src: 'Arts/AL.png',                        name: 'AL' }
         ];
 
         let currentIndex = 0;
